@@ -1,0 +1,193 @@
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --bg-dark: #121212;
+    --bg-black: #080808;
+    --text-main: #f0f0f0;
+    --text-muted: #aaaaaa;
+    --primary-color: #0dcaf0;
+}
+
+body.tech-theme {
+    font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+    padding-top: 56px;
+    background-color: var(--bg-black);
+    color: var(--text-main);
+    transition: all 0.3s ease;
+}
+
+.bg-dark {
+    background-color: var(--bg-dark) !important;
+}
+
+.bg-black {
+    background-color: var(--bg-black) !important;
+}
+
+.text-light-gray {
+    color: var(--text-muted);
+}
+
+.hero-section {
+    min-height: 100vh;
+    background: linear-gradient(-45deg, #121212, #1a252f, #121212, #080808);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1.2em;
+    background-color: white;
+    vertical-align: middle;
+    animation: blink 0.75s step-end infinite;
+    margin-left: 2px;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.experience-card {
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.experience-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(13, 202, 240, 0.2) !important;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    justify-content: center;
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    text-decoration: none;
+    padding: 30px;
+    border-radius: 8px;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.skill-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 5px 20px rgba(13, 202, 240, 0.3) !important;
+    background-color: var(--bg-black);
+    color: var(--primary-color);
+}
+
+.skill-item i {
+    transition: transform 0.3s ease;
+}
+
+.skill-item:hover i {
+    transform: scale(1.1);
+}
+
+.skill-name {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.crosshair {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    pointer-events: none;
+    transition: border-color 0.3s ease;
+}
+
+.crosshair::before,
+.crosshair::after {
+    content: "";
+    position: absolute;
+    background-color: var(--text-muted);
+    transition: background-color 0.3s ease;
+}
+
+.top-left { top: 10px; left: 10px; }
+.top-right { top: 10px; right: 10px; }
+.bottom-left { bottom: 10px; left: 10px; }
+.bottom-right { bottom: 10px; right: 10px; }
+
+.top-left::before { top: 0; left: 0; width: 1px; height: 100%; }
+.top-left::after { top: 0; left: 0; width: 100%; height: 1px; }
+
+.top-right::before { top: 0; right: 0; width: 1px; height: 100%; }
+.top-right::after { top: 0; right: 0; width: 100%; height: 1px; }
+
+.bottom-left::before { bottom: 0; left: 0; width: 1px; height: 100%; }
+.bottom-left::after { bottom: 0; left: 0; width: 100%; height: 1px; }
+
+.bottom-right::before { bottom: 0; right: 0; width: 1px; height: 100%; }
+.bottom-right::after { bottom: 0; right: 0; width: 100%; height: 1px; }
+
+.skill-item:hover .crosshair::before,
+.skill-item:hover .crosshair::after {
+    background-color: var(--primary-color);
+}
+
+.contact-card {
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+    box-shadow: 0 10px 30px rgba(13, 202, 240, 0.1) !important;
+}
+
+.form-control-dark {
+    font-family: inherit;
+    border: 1px solid transparent;
+    transition: border-color 0.3s ease;
+    padding: 12px;
+}
+
+.form-control-dark:focus {
+    box-shadow: none !important;
+    border-color: var(--primary-color) !important;
+}
+
+.form-control-dark::placeholder {
+    color: #6c757d;
+    opacity: 1; 
+}
+
+
+.form-control-dark:focus::placeholder {
+    color: var(--primary-color); 
+    opacity: 0.5; 
+}
+
+.btn-info {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-info:hover {
+    background-color: #0a98b7;
+    transform: scale(1.02);
+}
+
+/* Añadimos Montserrat Font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
