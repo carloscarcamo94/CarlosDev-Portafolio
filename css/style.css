@@ -30,17 +30,45 @@ body.tech-theme {
     color: var(--text-muted);
 }
 
+/* --- Fondo animado de circuito --- */
 .hero-section {
     min-height: 100vh;
-    background: linear-gradient(-45deg, #121212, #1a252f, #121212, #080808);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
+    background-color: var(--bg-black);
+    
+    /* Capa 1: Nodos (puntos), Capa 2: Pistas horizontales, Capa 3: Pistas verticales */
+    background-image: 
+        radial-gradient(circle, rgba(13, 202, 240, 0.5) 2px, transparent 2.5px),
+        linear-gradient(rgba(13, 202, 240, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(13, 202, 240, 0.08) 1px, transparent 1px);
+    
+    background-size: 50px 50px;
+    background-position: 0 0, 0 0, 0 0;
+    
+    /* Animación infinita que mueve el circuito diagonalmente */
+    animation: circuitScroll 20s linear infinite;
+    position: relative;
 }
 
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* Efecto de viñeta: oscurece los bordes para dar profundidad y resaltar el texto */
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at center, transparent 10%, var(--bg-black) 90%);
+    pointer-events: none; /* Importante para no bloquear el clic en tus botones */
+    z-index: 1;
+}
+
+/* Elevamos tu texto y botones por encima del efecto oscuro */
+.hero-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes circuitScroll {
+    0% { background-position: 0 0, 0 0, 0 0; }
+    /* Mueve la cuadrícula exactamente un "bloque" (50px) para que el loop sea invisible */
+    100% { background-position: 50px 50px, 50px 50px, 50px 50px; }
 }
 
 .cursor {

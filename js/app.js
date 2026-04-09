@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     
-    // --- LÓGICA DE LA MÁQUINA DE ESCRIBIR (HERO SECTION) ---
+    // --- Mensaje dinámico ---
     const textElement = document.getElementById("typewriter");
     const phrases = ["Desarrollador Backend.", "Software Developer."];
     let phraseIndex = 0;
