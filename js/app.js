@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
             contactMessage: document.getElementById("contactMessage").value
         };
 
-        fetch("http://localhost:8080/api/contacto", {
+        fetch("https://api-contactform.onrender.com/api/contacto", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
