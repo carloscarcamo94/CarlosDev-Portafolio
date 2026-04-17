@@ -51,6 +51,13 @@ document.addEventListener("DOMContentLoaded", function () {
         submitBtn.disabled = true;
         alertMessage.classList.add("d-none");
 
+        // Temporizador para la mitigación visual (Cold Start)
+        // Si pasan 3 segundos y no ha terminado, mostramos un mensaje para el usuario
+        const coldStartTimeout = setTimeout(() => {
+            btnText.textContent = "El mensaje se está enviando...";
+            showAlert("Esto puede tomar unos momentos, por favor no cierres la página.", "alert-info");
+        }, 3000); 
+
         const data = {
             contactName: document.getElementById("contactName").value,
             contactPhone: document.getElementById("contactPhone").value,
@@ -78,6 +85,10 @@ document.addEventListener("DOMContentLoaded", function () {
             showAlert("No se pudo conectar con el servidor. Intenta más tarde.", "alert-danger");
         })
         .finally(() => {
+            // Cancelamos el temporizador si el servidor respondió rápido
+            clearTimeout(coldStartTimeout);
+            
+            // Restauramos el botón a su estado original
             btnText.textContent = "Enviar Mensaje";
             btnSpinner.classList.add("d-none");
             submitBtn.disabled = false;
