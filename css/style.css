@@ -217,5 +217,20 @@ body.tech-theme {
     transform: scale(1.02);
 }
 
+/* Rotación suave para la flecha */
+[data-bs-toggle="collapse"] .transition-icon {
+    transition: transform 0.3s ease;
+}
+
+/* Estado cerrado: aria-expanded="false" -> Flecha hacia abajo (0 grados) */
+[data-bs-toggle="collapse"][aria-expanded="false"] .transition-icon {
+    transform: rotate(0deg); 
+}
+
+/* Estado abierto: aria-expanded="true" -> Flecha hacia arriba (180 grados) */
+[data-bs-toggle="collapse"][aria-expanded="true"] .transition-icon {
+    transform: rotate(180deg);
+}
+
 /* Añadimos Montserrat Font */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
