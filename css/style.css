@@ -215,6 +215,7 @@ body.tech-theme {
 .btn-info:hover {
     background-color: #0a98b7;
     transform: scale(1.02);
+    color:#f0f0f0;
 }
 
 /* Rotación suave para la flecha */
