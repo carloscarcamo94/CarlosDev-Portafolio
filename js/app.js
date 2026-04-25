@@ -51,11 +51,24 @@ document.addEventListener("DOMContentLoaded", function () {
         submitBtn.disabled = true;
         alertMessage.classList.add("d-none");
 
+        // Declaramos la variable del intervalo fuera para poder cancelarla después
+        let coldStartInterval;
+
         // Temporizador para la mitigación visual (Cold Start)
-        // Si pasan 3 segundos y no ha terminado, mostramos un mensaje para el usuario
         const coldStartTimeout = setTimeout(() => {
-            btnText.textContent = "El mensaje se está enviando...";
             showAlert("Esto puede tomar unos momentos, por favor no cierres la página.", "alert-info");
+            
+            // Iniciamos la animación
+            let dotCount = 1;
+            btnText.textContent = "Enviando."; // Texto inicial
+            
+            coldStartInterval = setInterval(() => {
+                dotCount++;
+                if (dotCount > 3) {
+                    dotCount = 1; // Reinicia a 1 punto después de llegar a 3
+                }
+                btnText.textContent = "Enviando" + ".".repeat(dotCount);
+            }, 500); // Velocidad de la animación: cambia cada medio segundo (500ms)
         }, 3000); 
 
         const data = {
@@ -87,6 +100,8 @@ document.addEventListener("DOMContentLoaded", function () {
         .finally(() => {
             // Cancelamos el temporizador si el servidor respondió rápido
             clearTimeout(coldStartTimeout);
+            // Cancelamos la animación
+            if (coldStartInterval) clearInterval(coldStartInterval);
             
             // Restauramos el botón a su estado original
             btnText.textContent = "Enviar Mensaje";
