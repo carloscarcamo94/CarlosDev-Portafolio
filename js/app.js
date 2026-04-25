@@ -85,12 +85,24 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             body: JSON.stringify(data)
         })
-        .then(response => {
+        .then(async response => {
             if (response.ok) {
                 showAlert("¡Mensaje enviado con éxito! Te contactaré pronto.", "alert-success");
                 contactForm.reset();
             } else {
-                showAlert("Hubo un error al enviar el mensaje. Revisa los datos.", "alert-danger");
+                // Si hay un error, extraemos el JSON que nos manda SpringBoot
+                const errorData = await response.json();
+                // Evaluamos qué tipo de error está devolviendo el backend
+                if (response.status === 429) {
+                    // Límite de peticiones superadas (Utilizamos el alert-warning para este tipo de error)
+                    showAlert(errorData.mensaje || "Has excedido el límite de envíos. Intenta más tarde.", "alert-warning");
+                } else if (response.status === 400) {
+                    // Errores en la validación de datos (Campos vacíos, formato de email incorrecto, etc.)
+                    showAlert("Datos inválidos. Por favor verifica tu información.", "alert-danger");
+                } else {
+                    // Cualquier otro error general (HTTP 500)
+                    showAlert("Hubo un error al enviar el mensaje. Revisa los datos.", "alert-danger");
+                }
             }
         })
         .catch(error => {
