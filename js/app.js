@@ -73,7 +73,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const data = {
             contactName: document.getElementById("contactName").value,
-            contactPhone: document.getElementById("contactPhone").value,
+            // Concatenamos el prefijo con el número
+            contactPhone: document.getElementById("countryCode").value + document.getElementById("contactPhone").value,
             contactEmail: document.getElementById("contactEmail").value,
             contactMessage: document.getElementById("contactMessage").value
         };

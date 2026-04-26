@@ -259,6 +259,11 @@
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Spring_Boot.svg/960px-Spring_Boot.svg.png?_=20230616230349" alt="Spring Boot" style="width: 48px; height: 48px;" class="mb-3">
                     <span class="skill-name">Spring Boot</span>
                 </a>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" class="skill-item">
+                    <div class="crosshair top-left"></div><div class="crosshair top-right"></div><div class="crosshair bottom-left"></div><div class="crosshair bottom-right"></div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/960px-JavaScript-logo.png?_=20120221235433" alt="JavaScript" style="width: 48px; height: 48px;" class="mb-3">
+                    <span class="skill-name">JavaScript</span>
+                </a>
                 <a href="https://www.mysql.com/" target="_blank" class="skill-item">
                     <div class="crosshair top-left"></div><div class="crosshair top-right"></div><div class="crosshair bottom-left"></div><div class="crosshair bottom-right"></div>
                     <img src="https://upload.wikimedia.org/wikipedia/en/thumb/d/dd/MySQL_logo.svg/960px-MySQL_logo.svg.png" alt="MySQL" style="width: 80px; height: 48px;" class="mb-3">
@@ -290,18 +295,62 @@
                             <form id="portfolioContactForm">
                                 <div class="mb-3">
                                     <label for="contactName" class="form-label text-light-gray">Nombre completo</label>
-                                    <input type="text" class="form-control form-control-dark bg-dark text-white border-0 rounded-3" id="contactName" placeholder='Ejemplo: "John Doe"' required maxlength="50">
+                                    <input type="text" class="form-control form-control-dark bg-dark text-white border-0 rounded-3" id="contactName" placeholder='Ejemplo: "John Doe"' required maxlength="50" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s\-']+$" title="Solamente puedes ingresar letras, espacios, tildes, guiones o apóstrofes">
                                 </div>
                                 <div class="mb-3">
                                     <label for="contactPhone" class="form-label text-light-gray">Teléfono</label>
-                                    <input type="text" class="form-control form-control-dark bg-dark text-white border-0 rounded-3" id="contactPhone" placeholder='Ejemplo: "72105000"' required minlength="8" maxlength="8" pattern="[0-9]{8}">
+                                    <div class="input-group">
+                                        <select class="form-select form-control-dark bg-dark text-white border-0 rounded-start-3" id="countryCode" style="max-width: 140px; border-right: 1px solid #333 !important;">
+                                            <option value="+503" selected>🇸🇻 +503</option>
+                                            <option value="+502">🇬🇹 +502</option>
+                                            <option value="+504">🇭🇳 +504</option>
+                                            <option value="+505">🇳🇮 +505</option>
+                                            <option value="+506">🇨🇷 +506</option>
+                                            <option value="+507">🇵🇦 +507</option>
+                                            <option value="+52">🇲🇽 +52</option>
+                                            <option value="+1">🇺🇸 +1</option>
+                                            <option value="+1">🇨🇦 +1</option>
+                                            
+                                            <option value="+57">🇨🇴 +57</option>
+                                            <option value="+593">🇪🇨 +593</option>
+                                            <option value="+54">🇦🇷 +54</option>
+                                            <option value="+56">🇨🇱 +56</option>
+                                            <option value="+598">🇺🇾 +598</option>
+                                            <option value="+591">🇧🇴 +591</option>
+                                            <option value="+55">🇧🇷 +55</option>
+                                            <option value="+595">🇵🇾 +595</option>
+                                            <option value="+51">🇵🇪 +51</option>
+                                            <option value="+58">🇻🇪 +58</option>
+
+                                            <option value="+34">🇪🇸 +34</option>
+                                            <option value="+44">🇬🇧 +44</option>
+                                            <option value="+39">🇮🇹 +39</option>
+                                            <option value="+49">🇩🇪 +49</option>
+                                            <option value="+48">🇵🇱 +48</option>
+                                            <option value="+41">🇨🇭 +41</option>
+                                            <option value="+380">🇺🇦 +380</option>
+                                            <option value="+351">🇵🇹 +351</option>
+                                            <option value="+46">🇸🇪 +46</option>
+                                            <option value="+358">🇫🇮 +358</option>
+                                            <option value="+45">🇩🇰 +45</option>
+
+                                            <option value="+91">🇮🇳 +91</option>
+                                            <option value="+86">🇨🇳 +86</option>
+                                            <option value="+81">🇯🇵 +81</option>
+                                            <option value="+82">🇰🇷 +82</option>
+                                            <option value="+65">🇸🇬 +65</option>
+                                            <option value="+84">🇻🇳 +84</option>
+                                            <option value="+62">🇮🇩 +62</option>
+                                        </select>
+                                        <input type="text" class="form-control form-control-dark bg-dark text-white border-0 rounded-end-3" id="contactPhone" placeholder='Ejemplo: "72105000"' maxlength="14" required pattern="[0-9]{8,14}" title="Debes ingresar 8 números">
+                                    </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="contactEmail" class="form-label text-light-gray">Correo electrónico</label>
                                     <input type="email" class="form-control form-control-dark bg-dark text-white border-0 rounded-3" id="contactEmail" placeholder='Ejemplo: "john.doe@gmail.com"' required maxlength="70">
                                 </div>
                                 <div class="mb-4">
-                                    <label for="contactMessage" class="form-label text-light-gray">Tu mensaje</label>
+                                    <label for="contactMessage" class="form-label text-light-gray">Mensaje</label>
                                     <textarea class="form-control form-control-dark bg-dark text-white border-0 rounded-3" id="contactMessage" rows="4" required></textarea>
                                 </div>
                                 <div class="d-grid">
