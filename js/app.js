@@ -1,5 +1,22 @@
 document.addEventListener("DOMContentLoaded", function () {
     
+    // --- Lógica de Smart Navbar (Ocultar al bajar, mostrar al subir) ---
+    // const navbar = document.getElementById('main-navbar');
+    // let lastScrollTop = 0;
+
+    // window.addEventListener('scroll', function() {
+    //     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Si el usuario hace scroll hacia abajo y ha pasado los primeros 100px
+    //     if (scrollTop > lastScrollTop && scrollTop > 100) {
+    //         navbar.style.transform = 'translateY(-100%)'; // Oculta la barra hacia arriba
+    //     } else {
+    //         navbar.style.transform = 'translateY(0)'; // Muestra la barra al subir
+    //     }
+        
+    //     lastScrollTop = scrollTop;
+    // });
+
     // --- Mensaje dinámico ---
     const textElement = document.getElementById("typewriter");
     const phrases = ["Desarrollador Backend.", "Software Developer."];

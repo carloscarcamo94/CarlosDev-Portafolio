@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>&lt;CarlosDev/&gt;</title>
+    <link rel="icon" type="image/svg+xml" href="assets/logos/carlosdev-icon.svg">
+    <link rel="apple-touch-icon" href="assets/logos/carlosdev-icon.svg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="tech-theme" data-bs-spy="scroll" data-bs-target="#main-navbar" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0">
+
+    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
+        <div class="container">
+            <a class="navbar-brand" href="index.html#inicio">
+                <img src="assets/logos/carlosdev.svg" alt="CarlosDev-Logo" style="height: 40px; width: auto;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">Sobre Mí</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#hobbies">Hobbies</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="redesDropdown" role="button" data-bs-toggle="dropdown">
+                            Redes Sociales
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow">
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="https://github.com/carloscarcamo94" target="_blank">
+                                    <i class="fab fa-github fs-5 me-2" style="color: #ffffff;"></i> GitHub
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="https://www.linkedin.com/in/carloscarcamo94/" target="_blank">
+                                    <i class="fab fa-linkedin fs-5 me-2" style="color: #0a66c2;"></i> LinkedIn
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="https://wa.me/50366769841" target="_blank">
+                                    <i class="fab fa-whatsapp fs-5 me-2" style="color: #25D366;"></i> WhatsApp
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sección Sobre Mí (Fondo Animado) -->
+    <section id="about" class="hero-section d-flex align-items-center text-white pb-5" style="min-height: auto; padding-top: 100px;">
+        <div class="container mt-5">
+            <h1 class="display-4 fw-bold mb-4 text-center border-bottom border-info pb-3"><i class="fas fa-user-astronaut me-3 text-info"></i>System.out.println("Sobre Mí");</h1>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card experience-card bg-black text-white shadow-sm border-info border-1 p-4">
+                        <p class="lead text-light-gray">
+                            Soy un desarrollador backend apasionado por la eficiencia, la arquitectura de datos y la resolución de problemas lógicos. Fuera del IDE y de las consultas SQL, mi mente sigue funcionando de manera analítica y estratégica.
+                        </p>
+                        <p class="text-light-gray">
+                            Disfruto desglosar sistemas complejos, ya sea optimizando un microservicio en Spring Boot, analizando un texto clásico en su latín original, o evaluando probabilidades y estadísticas deportivas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> 
+
+    <!-- Sección Hobbies (HUD Interactivo) -->
+    <section id="hobbies" class="py-5 bg-dark" style="min-height: 60vh;">
+        <div class="container">
+            <h2 class="text-center text-white fw-bold mb-5"><i class="fas fa-database me-2 text-info"></i>Base de Datos Personal: Hobbies</h2>
+            
+            <!-- Botones interactivos (Nav Pills) -->
+            <ul class="nav nav-pills justify-content-center mb-5 gap-3" id="hobbies-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active btn btn-outline-info rounded-pill border-1 px-4" id="lecturas-tab" data-bs-toggle="pill" data-bs-target="#lecturas" type="button" role="tab"><i class="fas fa-book me-2"></i>Lecturas</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link btn btn-outline-info rounded-pill border-1 px-4" id="deportes-tab" data-bs-toggle="pill" data-bs-target="#deportes" type="button" role="tab"><i class="fas fa-futbol me-2"></i>Deportes</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link btn btn-outline-info rounded-pill border-1 px-4" id="videojuegos-tab" data-bs-toggle="pill" data-bs-target="#videojuegos" type="button" role="tab"><i class="fas fa-gamepad me-2"></i>Videojuegos</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link btn btn-outline-info rounded-pill border-1 px-4" id="musica-tab" data-bs-toggle="pill" data-bs-target="#musica" type="button" role="tab"><i class="fas fa-music me-2"></i>Música</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link btn btn-outline-info rounded-pill border-1 px-4" id="cine-tab" data-bs-toggle="pill" data-bs-target="#cine" type="button" role="tab"><i class="fas fa-film me-2"></i>Películas</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link btn btn-outline-info rounded-pill border-1 px-4" id="series-tab" data-bs-toggle="pill" data-bs-target="#series" type="button" role="tab"><i class="fas fa-tv me-2"></i>Series</button>
+                </li>
+                <!-- Nuevos Botones -->
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link btn btn-outline-info rounded-pill border-1 px-4" id="comida-tab" data-bs-toggle="pill" data-bs-target="#comida" type="button" role="tab"><i class="fas fa-utensils me-2"></i>Comida</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link btn btn-outline-info rounded-pill border-1 px-4" id="bebidas-tab" data-bs-toggle="pill" data-bs-target="#bebidas" type="button" role="tab"><i class="fas fa-mug-hot me-2"></i>Bebidas</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link btn btn-outline-info rounded-pill border-1 px-4" id="viajes-tab" data-bs-toggle="pill" data-bs-target="#viajes" type="button" role="tab"><i class="fas fa-map-marked-alt me-2"></i>Viajes</button>
+                </li>
+            </ul>
+
+            <!-- Contenido de las secciones -->
+            <div class="tab-content" id="hobbies-tabContent">
+                
+                <!-- Lecturas (Integración con Backend Notion) -->
+                <div class="tab-pane fade show active" id="lecturas" role="tabpanel" tabindex="0">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10" id="lecturas-container">
+                            <div class="text-center py-5">
+                                <div class="spinner-border text-info" role="status" style="width: 3rem; height: 3rem;"></div>
+                                <p class="mt-3 text-info font-monospace">Conectando con Notion API... Extrayendo catálogo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deportes -->
+                <div class="tab-pane fade" id="deportes" role="tabpanel" tabindex="0">
+                    <div class="text-center p-4 border border-info border-opacity-50 rounded bg-black">
+                        <h4 class="text-white"><i class="fas fa-trophy text-info mb-3"></i></h4>
+                        <p class="text-light-gray">Fiel seguidor del fútbol europeo y amante del análisis táctico. Sigo de cerca las competiciones de élite, disfrutando especialmente de las noches mágicas de Champions League y estudiando las estadísticas y probabilidades del juego.</p>
+                    </div>
+                </div>
+
+                <!-- Videojuegos -->
+                <div class="tab-pane fade" id="videojuegos" role="tabpanel" tabindex="0">
+                    <div class="text-center p-5 border border-info border-opacity-50 rounded bg-black" style="background-image: repeating-linear-gradient(45deg, rgba(13, 202, 240, 0.05) 0px, rgba(13, 202, 240, 0.05) 2px, transparent 2px, transparent 10px);">
+                        <i class="fab fa-steam fa-3x text-secondary mb-3"></i><i class="fab fa-playstation fa-3x text-secondary mb-3"></i>
+                        <h4 class="text-white">Módulo Steam (En Desarrollo)</h4>
+                        <p class="text-light-gray font-monospace mt-3">await fetch('api/steam/current'); // Construyendo servicio Backend...</p>
+                    </div>
+                </div>
+
+                <!-- Música (Próximamente Spotify) -->
+                <div class="tab-pane fade" id="musica" role="tabpanel" tabindex="0">
+                    <div class="text-center p-5 border border-info border-opacity-50 rounded bg-black" style="background-image: repeating-linear-gradient(45deg, rgba(13, 202, 240, 0.05) 0px, rgba(13, 202, 240, 0.05) 2px, transparent 2px, transparent 10px);">
+                        <i class="fab fa-spotify fa-3x text-secondary mb-3"></i>
+                        <h4 class="text-white">Módulo Spotify (En Desarrollo)</h4>
+                        <p class="text-light-gray font-monospace mt-3">await fetch('api/spotify/current'); // Construyendo servicio Backend...</p>
+                    </div>
+                </div>
+
+                <!-- Películas (Próximamente Letterboxd) -->
+                <div class="tab-pane fade" id="cine" role="tabpanel" tabindex="0">
+                    <div class="text-center p-5 border border-info border-opacity-50 rounded bg-black" style="background-image: repeating-linear-gradient(-45deg, rgba(13, 202, 240, 0.05) 0px, rgba(13, 202, 240, 0.05) 2px, transparent 2px, transparent 10px);">
+                        <i class="fa-brands fa-letterboxd fa-3x text-secondary mb-3"></i>
+                        <h4 class="text-white">Módulo Letterboxd (En Desarrollo)</h4>
+                        <p class="text-light-gray font-monospace mt-3">await fetch('api/letterboxd/watchlist'); // Configurando DTOs y controladores...</p>
+                    </div>
+                </div>
+
+                <!-- Series (Próximamente Trakt.tv) -->
+                <div class="tab-pane fade" id="series" role="tabpanel" tabindex="0">
+                    <div class="text-center p-5 border border-info border-opacity-50 rounded bg-black" style="background-image: repeating-linear-gradient(-45deg, rgba(13, 202, 240, 0.05) 0px, rgba(13, 202, 240, 0.05) 2px, transparent 2px, transparent 10px);">
+                        <i class="fas fa-tv fa-3x text-secondary mb-3"></i>
+                        <h4 class="text-white">Módulo Trakt.tv (En Desarrollo)</h4>
+                        <p class="text-light-gray font-monospace mt-3">await fetch('api/trakt/watchlist'); // Configurando DTOs y controladores...</p>
+                    </div>
+                </div>
+
+                <!-- Comida -->
+                <div class="tab-pane fade" id="comida" role="tabpanel" tabindex="0">
+                    <div class="text-center p-4 border border-info border-opacity-50 rounded bg-black">
+                        <h4 class="text-white"><i class="fas fa-hamburger text-info mb-3"></i></h4>
+                        <p class="text-light-gray">Explorador gastronómico. Me gusta descubrir nuevos sabores y texturas, desde comida callejera local hasta platillos más complejos, recargando energía lejos del teclado.</p>
+                    </div>
+                </div>
+
+                <!-- Bebidas -->
+                <div class="tab-pane fade" id="bebidas" role="tabpanel" tabindex="0">
+                    <div class="text-center p-4 border border-info border-opacity-50 rounded bg-black">
+                        <h4 class="text-white"><i class="fas fa-coffee text-info mb-3"></i></h4>
+                        <p class="text-light-gray">El combustible del código. Disfruto de un buen café para arrancar las sesiones de programación matutinas y explorar cervezas artesanales o mixología para relajar el sistema en mi tiempo libre.</p>
+                    </div>
+                </div>
+
+                <!-- Viajes -->
+                <div class="tab-pane fade" id="viajes" role="tabpanel" tabindex="0">
+                    <div class="text-center p-4 border border-info border-opacity-50 rounded bg-black">
+                        <h4 class="text-white"><i class="fas fa-plane-departure text-info mb-3"></i></h4>
+                        <p class="text-light-gray">Desconectando del servidor para explorar el mundo físico. Viajar me permite reiniciar la mente, adaptarme a nuevos entornos y conocer diferentes perspectivas y culturas.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/about.js"></script> <!-- Script exclusivo para esta página -->
+</body>
+</html>

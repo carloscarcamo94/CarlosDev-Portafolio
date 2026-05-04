@@ -278,5 +278,97 @@ body.tech-theme {
     transform: rotate(180deg);
 }
 
+/* --- Estilos Cyberpunk para HUD de Hobbies --- */
+
+/* Estado normal de los botones */
+#hobbies-tab .nav-link {
+    background-color: var(--bg-dark);
+    color: var(--text-muted);
+    border: 1px solid rgba(13, 202, 240, 0.3) !important;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Efecto Hover (al pasar el ratón) */
+#hobbies-tab .nav-link:hover {
+    background-color: rgba(13, 202, 240, 0.05);
+    color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(13, 202, 240, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Estado Activo (Resplandor Neón Intenso) */
+#hobbies-tab .nav-link.active {
+    background-color: rgba(13, 202, 240, 0.1) !important; /* Fondo sutilmente cian */
+    color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    
+    /* Múltiples sombras para el efecto de luz de neón y profundidad (HUD) */
+    box-shadow: 
+        0 0 15px rgba(13, 202, 240, 0.5), 
+        inset 0 0 10px rgba(13, 202, 240, 0.3) !important;
+    
+    font-weight: bold;
+    transform: translateY(-2px);
+}
+
+/* --- Navbar Dinámica y ScrollSpy (Cyberpunk Style) --- */
+
+/* Transición para la barra de navegación */
+.navbar {
+    transition: transform 0.4s ease-in-out, background-color 0.4s ease-in-out;
+}
+
+/* Transiciones para los enlaces individuales */
+.navbar-dark .navbar-nav .nav-link {
+    transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+    position: relative;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* Estilo para la sección activa (indicador ScrollSpy) */
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .nav-link.show {
+    color: var(--primary-color) !important;
+    text-shadow: 0 0 10px rgba(13, 202, 240, 0.8);
+    font-weight: bold;
+}
+
+/* Línea inferior de neón que aparece debajo del enlace activo o al hacer hover */
+.navbar-dark .navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: var(--primary-color);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px var(--primary-color);
+    transform: translateX(-50%);
+}
+
+.navbar-dark .navbar-nav .nav-link.active::after,
+.navbar-dark .navbar-nav .nav-link.show::after,
+.navbar-dark .navbar-nav .nav-link:hover::after {
+    width: 80%;
+}
+
+/* --- Animación para las opciones internas del Dropdown --- */
+.dropdown-menu-dark .dropdown-item {
+    transition: all 0.3s ease;
+    color: var(--text-muted);
+}
+
+.dropdown-menu-dark .dropdown-item:hover {
+    background-color: rgba(170, 170, 170, 0.1); /* Fondo translúcido */
+    color: var(--primary-color) !important;
+    text-shadow: 0 0 8px rgba(89, 96, 97, 0.6);
+    transform: translateX(2px); /* Desplazamiento táctico tipo HUD */
+}
+
 /* Añadimos Montserrat Font */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
