@@ -52,10 +52,10 @@
         </div>
     </nav>
 
-    <!-- Sección Sobre Mí (Fondo Animado) -->
+    <!-- Sección Sobre Mí -->
     <section id="about" class="hero-section d-flex align-items-center text-white pb-5" style="min-height: auto; padding-top: 100px;">
         <div class="container mt-5">
-            <h1 class="display-4 fw-bold mb-4 text-center border-bottom border-info pb-3"><i class="fas fa-user-astronaut me-3 text-info"></i>System.out.println("Sobre Mí");</h1>
+            <h1 class="display-4 fw-bold mb-4 text-center border-bottom border-info pb-3 text-break"><i class="fas fa-user-astronaut me-3 text-info"></i>console.log("Sobre Mí");</h1>
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card experience-card bg-black text-white shadow-sm border-info border-1 p-4">
@@ -74,7 +74,7 @@
     <!-- Sección Hobbies (HUD Interactivo) -->
     <section id="hobbies" class="py-5 bg-dark" style="min-height: 60vh;">
         <div class="container">
-            <h2 class="text-center text-white fw-bold mb-5"><i class="fas fa-database me-2 text-info"></i>Base de Datos Personal: Hobbies</h2>
+            <h2 class="text-center text-white fw-bold mb-5"><i class="fas fa-database me-2 text-info"></i>Base de Datos: Hobbies</h2>
             
             <!-- Botones interactivos (Nav Pills) -->
             <ul class="nav nav-pills justify-content-center mb-5 gap-3" id="hobbies-tab" role="tablist">
@@ -96,7 +96,6 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link btn btn-outline-info rounded-pill border-1 px-4" id="series-tab" data-bs-toggle="pill" data-bs-target="#series" type="button" role="tab"><i class="fas fa-tv me-2"></i>Series</button>
                 </li>
-                <!-- Nuevos Botones -->
                 <li class="nav-item" role="presentation">
                     <button class="nav-link btn btn-outline-info rounded-pill border-1 px-4" id="comida-tab" data-bs-toggle="pill" data-bs-target="#comida" type="button" role="tab"><i class="fas fa-utensils me-2"></i>Comida</button>
                 </li>
@@ -136,7 +135,7 @@
                     <div class="text-center p-5 border border-info border-opacity-50 rounded bg-black" style="background-image: repeating-linear-gradient(45deg, rgba(13, 202, 240, 0.05) 0px, rgba(13, 202, 240, 0.05) 2px, transparent 2px, transparent 10px);">
                         <i class="fab fa-steam fa-3x text-secondary mb-3"></i><i class="fab fa-playstation fa-3x text-secondary mb-3"></i>
                         <h4 class="text-white">Módulo Steam (En Desarrollo)</h4>
-                        <p class="text-light-gray font-monospace mt-3">await fetch('api/steam/current'); // Construyendo servicio Backend...</p>
+                        <p class="text-light-gray font-monospace mt-3 text-break">await fetch('api/steam/current'); // Construyendo servicio Backend...</p>
                     </div>
                 </div>
 
@@ -145,7 +144,7 @@
                     <div class="text-center p-5 border border-info border-opacity-50 rounded bg-black" style="background-image: repeating-linear-gradient(45deg, rgba(13, 202, 240, 0.05) 0px, rgba(13, 202, 240, 0.05) 2px, transparent 2px, transparent 10px);">
                         <i class="fab fa-spotify fa-3x text-secondary mb-3"></i>
                         <h4 class="text-white">Módulo Spotify (En Desarrollo)</h4>
-                        <p class="text-light-gray font-monospace mt-3">await fetch('api/spotify/current'); // Construyendo servicio Backend...</p>
+                        <p class="text-light-gray font-monospace mt-3 text-break">await fetch('api/spotify/current'); // Construyendo servicio Backend...</p>
                     </div>
                 </div>
 
@@ -154,7 +153,7 @@
                     <div class="text-center p-5 border border-info border-opacity-50 rounded bg-black" style="background-image: repeating-linear-gradient(-45deg, rgba(13, 202, 240, 0.05) 0px, rgba(13, 202, 240, 0.05) 2px, transparent 2px, transparent 10px);">
                         <i class="fa-brands fa-letterboxd fa-3x text-secondary mb-3"></i>
                         <h4 class="text-white">Módulo Letterboxd (En Desarrollo)</h4>
-                        <p class="text-light-gray font-monospace mt-3">await fetch('api/letterboxd/watchlist'); // Configurando DTOs y controladores...</p>
+                        <p class="text-light-gray font-monospace mt-3 text-break">await fetch('api/letterboxd/watchlist'); // Configurando DTOs y controladores...</p>
                     </div>
                 </div>
 
@@ -163,7 +162,7 @@
                     <div class="text-center p-5 border border-info border-opacity-50 rounded bg-black" style="background-image: repeating-linear-gradient(-45deg, rgba(13, 202, 240, 0.05) 0px, rgba(13, 202, 240, 0.05) 2px, transparent 2px, transparent 10px);">
                         <i class="fas fa-tv fa-3x text-secondary mb-3"></i>
                         <h4 class="text-white">Módulo Trakt.tv (En Desarrollo)</h4>
-                        <p class="text-light-gray font-monospace mt-3">await fetch('api/trakt/watchlist'); // Configurando DTOs y controladores...</p>
+                        <p class="text-light-gray font-monospace mt-3 text-break">await fetch('api/trakt/watchlist'); // Configurando DTOs y controladores...</p>
                     </div>
                 </div>
 
