@@ -62,23 +62,28 @@ document.addEventListener("DOMContentLoaded", function () {
             const progressValue = libro.progreso ? (libro.progreso * 100).toFixed(0) : 0;
 
             col.innerHTML = `
-                <div class="card bg-black border-info border-1 h-100 text-white" style="transition: transform 0.3s; cursor: crosshair;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
-                    <div class="row g-0">
-                        <div class="col-4 d-flex align-items-center justify-content-center p-2">
-                            <img src="${coverImage}" class="img-fluid rounded border border-secondary" alt="Portada de ${libro.titulo}" style="max-height: 150px; object-fit: cover;">
+                <div class="card h-100 text-white cyber-card">
+                    <div class="row g-0 h-100">
+                        <div class="col-4 d-flex align-items-center justify-content-center p-3">
+                            <img src="${coverImage}" class="img-fluid rounded cyber-cover" alt="Portada de ${libro.titulo}" style="max-height: 180px; object-fit: cover;">
                         </div>
-                        <div class="col-8">
+                        <div class="col-8 d-flex flex-column justify-content-center">
                             <div class="card-body">
-                                <h5 class="card-title text-info fw-bold">${libro.titulo || 'Sin título'}</h5>
-                                <p class="card-text mb-1"><small class="text-muted"><i class="fas fa-pen-nib me-1"></i>${libro.autor || 'Desconocido'}</small></p>
-                                <p class="card-text mb-2"><span class="badge bg-secondary">${libro.genero || 'General'}</span></p>
+                                <h4 class="card-title text-info fw-bold mb-2">${libro.titulo || 'Sin título'}</h4>
                                 
-                                <!-- Barra de progreso al estilo Cyberpunk -->
-                                <div class="progress mt-3 bg-dark" style="height: 5px;">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: ${progressValue}%;" aria-valuenow="${progressValue}" aria-valuemin="0" aria-valuemax="100"></div>
+                                <p class="card-text mb-2 text-info fw-medium">
+                                    <i class="fas fa-pen-nib me-2"></i>${libro.autor || 'Desconocido'}
+                                </p>
+                                
+                                <p class="card-text mb-3">
+                                    <span class="badge bg-dark border border-secondary text-light">${libro.genero || 'General'}</span>
+                                </p>
+                                
+                                <div class="progress mt-auto bg-dark border border-info border-opacity-25" style="height: 6px;">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: ${progressValue}%; box-shadow: 0 0 5px #0dcaf0;" aria-valuenow="${progressValue}" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
-                                <div class="text-end mt-1">
-                                    <small class="font-monospace text-info">${progressValue}% completado</small>
+                                <div class="text-end mt-2">
+                                    <small class="font-monospace text-info fw-bold">${progressValue}% completado</small>
                                 </div>
                             </div>
                         </div>

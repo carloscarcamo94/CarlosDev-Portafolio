@@ -8,6 +8,7 @@ html {
     --text-main: #f0f0f0;
     --text-muted: #aaaaaa;
     --primary-color: #0dcaf0;
+    --secundary-color: #f00dca;
 }
 
 body.tech-theme {
@@ -389,6 +390,92 @@ body.tech-theme {
     .navbar-dark .navbar-nav .nav-link:hover::after {
         width: 100%;
     }
+}
+
+/* --- Efecto de Escaneo --- */
+.scan-effect {
+    position: relative;
+    display: inline-block;
+    color: var(--text-main);
+}
+
+/* Creamos el clon del texto en neón con el láser */
+.scan-effect::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* Empezamos oculto */
+    height: 0%; 
+    color: var(--secundary-color);
+    overflow: hidden;
+    /* El láser del escáner */
+    border-bottom: 3px solid var(--secundary-color); 
+    text-shadow: 0 0 15px var(--secundary-color);
+    animation: scanner-loop 4s ease-in-out infinite;
+    z-index: 2;
+}
+
+/* Animación de subida y bajada */
+@keyframes scanner-loop {
+    0% {
+        height: 0%;
+    }
+    50% {
+        height: 110%; /* Escanea hasta abajo */
+    }
+    100% {
+        height: 0%; /* Regresa hacia arriba */
+    }
+}
+
+/* --- Tarjetas de Libros (Cyberpunk HUD) --- */
+.cyber-card {
+    position: relative;
+    background-color: #050505; 
+    border: 1px solid var(--primary-color) !important;
+    box-shadow: 0 0 10px rgba(13, 202, 240, 0.2), inset 0 0 10px rgba(13, 202, 240, 0.1);
+    overflow: hidden; /* Mantiene el láser dentro de los bordes */
+    transition: all 0.3s ease;
+    cursor: crosshair;
+    border-radius: 8px;
+}
+
+/* Efecto al pasar el cursor (Pulso de energía) */
+.cyber-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(13, 202, 240, 0.5), inset 0 0 15px rgba(13, 202, 240, 0.2);
+    border-color: #fff !important; 
+}
+
+/* Línea de escaneo holográfica vertical */
+.cyber-card::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: rgba(13, 202, 240, 0.8);
+    box-shadow: 0 0 10px rgba(13, 202, 240, 0.8);
+    animation: hud-scan 4s linear infinite;
+    z-index: 10;
+    pointer-events: none; /* Evita que el láser bloquee los clics en la tarjeta */
+    opacity: 0;
+}
+
+@keyframes hud-scan {
+    0% { top: -10%; opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { top: 110%; opacity: 0; }
+}
+
+/* Ajustes para la portada del libro */
+.cyber-cover {
+    border: 1px solid rgba(13, 202, 240, 0.4);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
 }
 
 /* Añadimos Montserrat Font */
