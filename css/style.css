@@ -262,6 +262,20 @@ body.tech-theme {
     background-color: #0a98b7;
     transform: scale(1.02);
     color:#f0f0f0;
+    box-shadow: 0 0 20px rgba(13, 202, 240, 0.5), inset 0 0 15px rgba(13, 202, 240, 0.2);
+    border-color: #fff !important; 
+}
+
+.btn-outline-light {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-outline-light:hover {
+    background-color: #000000;
+    transform: scale(1.02);
+    color:#ffffff;
+    box-shadow: 0 0 20px rgba(13, 202, 240, 0.5), inset 0 0 15px rgba(13, 202, 240, 0.2);
+    border-color: #fff !important; 
 }
 
 /* Rotación suave para la flecha */
@@ -408,7 +422,7 @@ body.tech-theme {
     width: 100%;
     /* Empezamos oculto */
     height: 0%; 
-    color: var(--secundary-color);
+    color: var(--text-main);
     overflow: hidden;
     /* El láser del escáner */
     border-bottom: 3px solid var(--secundary-color); 
@@ -476,6 +490,11 @@ body.tech-theme {
 .cyber-cover {
     border: 1px solid rgba(13, 202, 240, 0.4);
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+}
+
+.avatar-neon {
+    color: #ffffff;
+    text-shadow: 0 0 2px #00f3ff, 0 0 5px #00f3ff;
 }
 
 /* Añadimos Montserrat Font */
