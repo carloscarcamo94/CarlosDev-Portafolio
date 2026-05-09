@@ -424,27 +424,42 @@ body.tech-theme {
     height: 0%; 
     color: var(--text-main);
     overflow: hidden;
-    /* El láser del escáner */
-    border-bottom: 3px solid var(--secundary-color); 
-    text-shadow: 0 0 15px var(--secundary-color);
+    /* Láser de escaneo */
+    border-bottom: 2px solid transparent; 
+    text-shadow: 0 0 10px var(--secundary-color);
     animation: scanner-loop 4s ease-in-out infinite;
     z-index: 2;
 }
 
-/* Animación de subida y bajada */
+/* Animación de subida y bajada del escaner */
 @keyframes scanner-loop {
     0% {
         height: 0%;
+        border-color: transparent;
+    }
+    10% {
+        border-color: var(--secundary-color); 
+    }
+    40% {
+        border-color: var(--secundary-color); 
     }
     50% {
-        height: 110%; /* Escanea hasta abajo */
+        height: 110%;
+        border-color: transparent;
+    }
+    60% {
+        border-color: var(--secundary-color); 
+    }
+    90% {
+        border-color: var(--secundary-color);
     }
     100% {
-        height: 0%; /* Regresa hacia arriba */
+        height: 0%;
+        border-color: transparent;
     }
 }
 
-/* --- Tarjetas de Libros (Cyberpunk HUD) --- */
+/* --- Tarjetas de Libros --- */
 .cyber-card {
     position: relative;
     background-color: #050505; 
@@ -493,8 +508,138 @@ body.tech-theme {
 }
 
 .avatar-neon {
+    color: #00f3ff;
+}
+
+.avatar-neon:hover {
     color: #ffffff;
-    text-shadow: 0 0 2px #00f3ff, 0 0 5px #00f3ff;
+    text-shadow: 0 0 2px #00f3ff, 0 0 4px #00f3ff;
+}
+
+/* --- Footer about.html --- */
+.api-logo {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+/* Estado Base */
+.api-logo svg {
+    width: 36px;
+    height: 36px;
+    fill: #6c757d; 
+    transition: all 0.3s ease-in-out;
+}
+
+/* Preparación para los 3 puntos de Letterboxd */
+.letterboxd-logo circle {
+    fill: #6c757d;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Animación al pasar el cursor (ligera elevación) */
+.api-logo:hover {
+    transform: translateY(-4px);
+}
+
+/* Efectos Hover por Marca */
+.notion-icon {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background-color: #6c757d; /* Gris neutro por defecto */
+    /* Traemos el vector oficial desde el CDN y lo usamos como molde */
+    -webkit-mask: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/notion.svg') no-repeat center;
+    mask: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/notion.svg') no-repeat center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Efecto Hover */
+.notion-logo:hover .notion-icon {
+    background-color: #ffffff; 
+}
+.notion-logo:hover {
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+}
+
+.spotify-logo:hover svg {
+    fill: #1DB954; /* Verde Spotify */
+    filter: drop-shadow(0 0 8px rgba(29, 185, 84, 0.6));
+}
+
+.steam-logo:hover svg {
+    fill: #66c0f4; /* Azul Claro Steam */
+    filter: drop-shadow(0 0 8px rgba(102, 192, 244, 0.6));
+}
+
+/* Letterboxd: Iluminación independiente de los 3 puntos */
+.letterboxd-logo:hover .dot1 {
+    fill: #00e054; /* Verde */
+    filter: drop-shadow(0 0 5px rgba(0, 224, 84, 0.6));
+}
+.letterboxd-logo:hover .dot2 {
+    fill: #ff8000; /* Naranja */
+    filter: drop-shadow(0 0 5px rgba(255, 128, 0, 0.6));
+}
+.letterboxd-logo:hover .dot3 {
+    fill: #40bcf4; /* Azul */
+    filter: drop-shadow(0 0 5px rgba(64, 188, 244, 0.6));
+}
+
+/* --- Footer index.html --- */
+.built-logo {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+/* Estado Base */
+.built-logo svg {
+    width: 36px;
+    height: 36px;
+    fill: #6c757d; 
+    transition: all 0.3s ease-in-out;
+}
+
+/* Animación de pequeña elevación general */
+.built-logo:hover {
+    transform: translateY(-4px);
+}
+
+.github-logo:hover svg {
+    fill: #ffffff;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+}
+
+.vercel-logo:hover svg {
+    fill: #ffffff;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+}
+
+.supabase-logo:hover svg {
+    fill: #3ECF8E;
+    filter: drop-shadow(0 0 8px rgba(62, 207, 142, 0.6));
+}
+
+/* Molde de Render */
+.render-icon {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background-color: #6c757d; /* Gris neutro por defecto */
+    -webkit-mask: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/render.svg') no-repeat center;
+    mask: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/render.svg') no-repeat center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Efectos Hover para Render */
+.render-logo:hover .render-icon {
+    background-color: #ffffff;
+}
+.render-logo:hover {
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
 }
 
 /* Añadimos Montserrat Font */

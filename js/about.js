@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
             const response = await fetch(apiUrl);
             
             if (response.status === 204) {
-                // No content (La lista está vacía en Notion)
                 renderEmptyState("Actualmente no tengo lecturas en progreso.");
                 return;
             }
