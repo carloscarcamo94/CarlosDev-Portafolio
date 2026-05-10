@@ -385,27 +385,6 @@ body.tech-theme {
     transform: translateX(2px); /* Desplazamiento táctico tipo HUD */
 }
 
-/* --- Adaptamos la Navbar para Pantallas Móviles --- */
-@media (max-width: 991.98px) {
-    /* Hacemos que el contenedor del enlace se ajuste solo al ancho de las letras */
-    .navbar-dark .navbar-nav .nav-link {
-        width: fit-content;
-    }
-    
-    /* Movemos la línea neón para que nazca desde la izquierda, justo debajo del texto */
-    .navbar-dark .navbar-nav .nav-link::after {
-        left: 0;
-        transform: none;
-    }
-    
-    /* La línea ocupará el 100% de la palabra, no de la pantalla */
-    .navbar-dark .navbar-nav .nav-link.active::after,
-    .navbar-dark .navbar-nav .nav-link.show::after,
-    .navbar-dark .navbar-nav .nav-link:hover::after {
-        width: 100%;
-    }
-}
-
 /* --- Efecto de Escaneo --- */
 .scan-effect {
     position: relative;
@@ -512,7 +491,7 @@ body.tech-theme {
 }
 
 .avatar-neon:hover {
-    color: #ffffff;
+    color: #fffffff3;
     text-shadow: 0 0 2px #00f3ff, 0 0 4px #00f3ff;
 }
 
@@ -546,7 +525,7 @@ body.tech-theme {
     display: inline-block;
     width: 36px;
     height: 36px;
-    background-color: #6c757d; /* Gris neutro por defecto */
+    background-color: #6c757d;
     /* Traemos el vector oficial desde el CDN y lo usamos como molde */
     -webkit-mask: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/notion.svg') no-repeat center;
     mask: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/notion.svg') no-repeat center;
@@ -640,6 +619,84 @@ body.tech-theme {
 }
 .render-logo:hover {
     filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+}
+
+/* --- Terminal Cyberpunk (Sobre Mí) --- */
+.cyber-terminal {
+    background-color: #050505;
+    border: 1px solid rgba(13, 202, 240, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), inset 0 0 10px rgba(13, 202, 240, 0.05);
+}
+
+.terminal-header {
+    background-color: #111;
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(13, 202, 240, 0.2);
+}
+
+.terminal-buttons span {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+.btn-close-term { background-color: #ff5f56; }
+.btn-min-term { background-color: #ffbd2e; }
+.btn-max-term { background-color: #27c93f; }
+
+/* Permitimos que el texto respete los \n del JavaScript*/
+.terminal-text-container {
+    white-space: pre-wrap; 
+    line-height: 1.6;
+    font-size: 1.05rem;
+    height: 200px; /* Definimos el tamaño para la consola */
+    text-align: left !important; 
+    display: block !important;
+}
+
+/* Animación del cursor titilante */
+.blinking-cursor {
+    font-weight: bold;
+    color: var(--primary-color);
+    animation: blink-caret 1s step-end infinite;
+}
+
+@keyframes blink-caret {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* --- Adaptamos la Navbar para Pantallas Móviles --- */
+@media (max-width: 991.98px) {
+    /* Hacemos que el contenedor del enlace se ajuste solo al ancho de las letras */
+    .navbar-dark .navbar-nav .nav-link {
+        width: fit-content;
+    }
+    
+    /* Movemos la línea neón para que nazca desde la izquierda, justo debajo del texto */
+    .navbar-dark .navbar-nav .nav-link::after {
+        left: 0;
+        transform: none;
+    }
+    
+    /* La línea ocupará el 100% de la palabra */
+    .navbar-dark .navbar-nav .nav-link.active::after,
+    .navbar-dark .navbar-nav .nav-link.show::after,
+    .navbar-dark .navbar-nav .nav-link:hover::after {
+        width: 100%;
+    }
+
+    .terminal-text-container {
+        /* Altura de la consola en móviles */
+        height: 300px; 
+        
+        /* Reducimos un poquito el tamaño de la fuente en móviles para que se ajuste mejor en la pantalla */
+        font-size: 0.95rem; 
+    }
 }
 
 /* Añadimos Montserrat Font */

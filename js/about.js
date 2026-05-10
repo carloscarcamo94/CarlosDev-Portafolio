@@ -17,6 +17,56 @@ document.addEventListener("DOMContentLoaded", function () {
     //     lastScrollTop = scrollTop;
     // });
 
+    // --- Lógica del Typewriter (Terminal) ---
+    const textPart1 = "Soy un desarrollador de software, entusiasta de la tecnología 💻. Me apasiona la innovación, crear proyectos y aprender constantemente nuevas herramientas del mundo tech ⚡.\n\nCuando no estoy programando, probablemente estoy leyendo algún libro 📔📕, escuchando música 🎧, jugando un videojuego 🎮 o viendo películas y series 🍿.";
+
+    const textPart2 = "También soy amante del deporte, en especial del fútbol ⚽, voleibol 🏐, baloncesto 🏀 y tenis 🎾. Fiel seguidor del Real Madrid 👑, me identifico con sus valores sobre la resiliencia y la búsqueda constante de la excelencia 🏆.\n\nY, por supuesto, nada acompaña mejor estos hobbies que una buena taza de café ☕.";
+
+    const twElement = document.getElementById("typewriter-text");
+    
+    if (twElement) {
+        let currentArray = Array.from(textPart1);
+        let charIndex = 0;
+        let phase = 1; // 1: Escribir | 2: Borrar
+        let isShowingPart1 = true; // Controla qué texto se está mostrando
+
+        function typeWriter() {
+            let typeSpeed = 35; // Velocidad de tipeo base
+
+            if (phase === 1) {
+                // Escribiendo...
+                if (charIndex < currentArray.length) {
+                    twElement.textContent += currentArray[charIndex];
+                    charIndex++;
+                    // Pausa humana en signos de puntuación
+                    if (currentArray[charIndex - 1] === '.' || currentArray[charIndex - 1] === ',') typeSpeed = 300;
+                } else {
+                    // Cambio a fase de borrado tras una pausa.
+                    phase = 2;
+                    typeSpeed = 4000; // Tiempo de espera al finalizar la escritura antes de empezar a borrar
+                }
+            } else if (phase === 2) {
+                // Borrando...
+                typeSpeed = 10; // Velocidad de borrado rápido
+                if (charIndex > 0) {
+                    charIndex--;
+                    twElement.textContent = currentArray.slice(0, charIndex).join('');
+                } else {
+                    // Alternamos los textos.
+                    phase = 1;
+                    isShowingPart1 = !isShowingPart1; // Cambia entre true y false
+                    currentArray = Array.from(isShowingPart1 ? textPart1 : textPart2);
+                    typeSpeed = 800; // Pausa breve con la terminal vacía antes de iniciar
+                }
+            }
+            
+            setTimeout(typeWriter, typeSpeed);
+        }
+
+        // Retrasar el inicio
+        setTimeout(typeWriter, 1200);
+    }
+
     // URL de tu API en producción (Render)
     const apiUrl = "https://api-contactform.onrender.com/api/libros/actuales";
     const lecturasContainer = document.getElementById("lecturas-container");
