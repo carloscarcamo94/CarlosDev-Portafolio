@@ -53,33 +53,72 @@
     </nav>
 
     <!-- Sección Sobre Mí -->
-    <section id="about" class="hero-section d-flex align-items-center text-white pb-5">
-        <div class="container mt-5">
+    <section id="about" class="hero-section d-flex align-items-center text-white pb-5 position-relative overflow-hidden">
+        <div id="hacker-background" class="position-absolute top-0 start-0 w-100 h-100" style="z-index: 0; pointer-events: none;"></div>
+        <div class="scanlines position-absolute top-0 start-0 w-100 h-100" style="z-index: 1; pointer-events: none;"></div>
+        
+        <div class="container mt-5 position-relative" style="z-index: 2;">
             
             <h1 class="display-4 fw-bold mb-4 text-center border-bottom border-info pb-3 text-break">
-                <i class="fas fa-user-secret me-3 avatar-neon"></i><span class="scan-effect" data-text="Un poco sobre mí">Un poco sobre mí</span>
+                <i class="fas fa-address-card me-3 avatar-neon"></i><span class="scan-effect" data-text="Un poco sobre mí">Un poco sobre mí</span>
             </h1>
             
             <div class="row justify-content-center">
-                <div class="col-md-10">
-                    <div class="cyber-terminal shadow-lg">
-                        <div class="terminal-header d-flex justify-content-between align-items-center">
-                            <div class="terminal-buttons">
-                                <span class="btn-close-term"></span>
-                                <span class="btn-min-term"></span>
-                                <span class="btn-max-term"></span>
-                            </div>
-                            <div class="terminal-title text-light-gray small d-flex align-items-center" style="opacity: 0.9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-weight: 600;"><i class="fas fa-folder me-2" style="color: #4da8da;"></i> Carlos &mdash; -zsh &mdash;</div>
-                            <div class="terminal-menu"></div>
+                <div class="col-md-8">
+                    
+                    <div class="cyber-datapad shadow-lg">
+                        <div class="datapad-header d-flex justify-content-between align-items-center px-3 py-2">
+                            <span class="text-info font-monospace small fw-bold">
+                                <i class="fas fa-satellite-dish me-2 blink-icon"></i>Conectado
+                            </span>
+                            <span class="text-info font-monospace small">User: CarlosDev</span>
                         </div>
-                        <div class="terminal-body font-monospace p-4 text-start">
-                            <div class="mb-3">
-                                <span class="text-info fw-bold">Carlos@CarlosDev</span></span><span class="text-primary"> ~  $</span> 
-                                <span class="text-light">cat perfil_personal.txt</span>
+                
+                        <div class="datapad-body p-4 p-md-5 position-relative">
+                            <div id="datapadCarousel" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-indicators cyber-indicators">
+                                    <button type="button" data-bs-target="#datapadCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
+                                    <button type="button" data-bs-target="#datapadCarousel" data-bs-slide-to="1"></button>
+                                    <button type="button" data-bs-target="#datapadCarousel" data-bs-slide-to="2"></button>
+                                </div>
+
+                                <div class="carousel-inner font-monospace">
+                                    <div class="carousel-item active" data-bs-interval="8000">
+                                        <h4 class="text-info fw-bold mb-3"><i class="fas fa-microchip me-2"></i>Intereses profesionales</h4>
+                                        <p class="text-light-gray fs-6 hacker-decode" data-text="Soy un desarrollador de software, entusiasta de la tecnología 🖱️. Me apasiona crear proyectos y aprender constantemente nuevas herramientas del mundo tech ⚡.">
+                                            Soy un desarrollador de software, entusiasta de la tecnología 🖱️. Me apasiona crear proyectos y aprender constantemente nuevas herramientas del mundo tech ⚡.
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="carousel-item" data-bs-interval="8000">
+                                        <h4 class="text-info fw-bold mb-3"><i class="fas fa-id-card me-2"></i>Pasatiempos</h4>
+                                        <p class="text-light-gray fs-6 hacker-decode" data-text="Cuando no estoy programando, probablemente estoy leyendo algún libro 📕, escuchando música 🎧, jugando un videojuego 🎮 o viendo películas y series 🍿.">
+                                            Cuando no estoy programando, probablemente estoy leyendo algún libro 📕, escuchando música 🎧, jugando un videojuego 🎮 o viendo películas y series 🍿.
+                                        </p>
+                                        <p class="text-light-gray fs-6 mt-3 hacker-decode" data-text="También soy amante del deporte, en especial del fútbol ⚽, voleibol 🏐, baloncesto 🏀 y tenis 🎾.">
+                                            También soy amante del deporte, en especial del fútbol ⚽, voleibol 🏐, baloncesto 🏀 y tenis 🎾.
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="carousel-item" data-bs-interval="8000">
+                                        <h4 class="text-info fw-bold mb-3"><i class="fas fa-fingerprint me-2"></i>Aficiones</h4>
+                                        <p class="text-light-gray fs-6 hacker-decode" data-text="Fiel seguidor de la Liga de Campeones ⭐, la Copa Mundial del Fútbol 🏆 y los Juegos Olímpicos 🏅.">
+                                            Fiel seguidor de la Liga de Campeones ⭐, la Copa Mundial del Fútbol 🏆 y los Juegos Olímpicos 🏅.
+                                        </p>
+                                        <p class="text-warning fs-6 mt-3 hacker-decode" data-text="Y, por supuesto, nada acompaña mejor estos hobbies que una buena taza de café ☕.">
+                                            Y, por supuesto, nada acompaña mejor estos hobbies que una buena taza de café ☕.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="terminal-text-container text-light-gray"><span id="typewriter-text"></span><span class="blinking-cursor">_</span></div>
+                        </div>
+
+                        <div class="datapad-footer p-2 d-flex justify-content-between">
+                            <button class="btn btn-link text-info text-decoration-none font-monospace cyber-btn" data-bs-target="#datapadCarousel" data-bs-slide="prev">&lt;</button>
+                            <button class="btn btn-link text-info text-decoration-none font-monospace cyber-btn" data-bs-target="#datapadCarousel" data-bs-slide="next">&gt;</button>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>

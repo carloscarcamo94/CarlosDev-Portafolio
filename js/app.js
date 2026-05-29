@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // --- Mensaje dinámico ---
     const textElement = document.getElementById("typewriter");
-    const phrases = ["Desarrollador Backend.", "Software Developer."];
+    const phrases = ["Desarrollador Backend", "Software Developer"];
     let phraseIndex = 0;
     let letterIndex = 0;
     let isDeleting = false;

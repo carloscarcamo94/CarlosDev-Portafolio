@@ -1,3 +1,6 @@
+/* Añadimos Montserrat Font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
 html {
     scroll-behavior: smooth;
 }
@@ -64,6 +67,53 @@ body.tech-theme {
 .hero-section .container {
     position: relative;
     z-index: 2;
+}
+
+#about.hero-section {
+    background-color: #0a0a0a !important;
+    background-image: none !important; 
+    animation: none !important;
+}
+
+/* Scanlines horizontales */
+.scanlines {
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 0px,
+        rgba(255, 255, 255, 0) 2px,
+        rgba(0, 0, 0, 0.25) 2px,
+        rgba(0, 0, 0, 0.25) 4px
+    );
+}
+
+/* Contenedores de las columnas generadas por JS */
+.hacker-column {
+    position: absolute;
+    top: -50px;
+    font-family: 'Fira Code', 'Roboto Mono', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.2;
+    white-space: pre-wrap;
+    word-break: break-all;
+    
+    /* Efecto de desvanecimiento hacia abajo para que no corte abruptamente */
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+    
+    /* Opacidad controlada para que sea un fondo y no le quite protagonismo a tu consola */
+    opacity: 0.15; 
+    transition: color 0.3s ease;
+}
+
+/* Colores Neón usando las variables de tu paleta */
+.hacker-cyan {
+    color: var(--primary-color);
+    text-shadow: 0 0 5px var(--primary-color), 0 0 10px var(--primary-color);
+}
+
+.hacker-magenta {
+    color: var(--secundary-color);
+    text-shadow: 0 0 5px var(--secundary-color), 0 0 10px var(--secundary-color);
 }
 
 @keyframes circuitScroll {
@@ -621,48 +671,77 @@ body.tech-theme {
     filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
 }
 
-/* --- Terminal Cyberpunk (Sobre Mí) --- */
-.cyber-terminal {
-    background-color: #050505;
-    border: 1px solid rgba(13, 202, 240, 0.3);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), inset 0 0 10px rgba(13, 202, 240, 0.05);
+/* Datapad About */
+.cyber-datapad {
+    background-color: rgba(5, 5, 5, 0.85);
+    border: 1px solid var(--primary-color);
+    border-radius: 20px; 
+    overflow: hidden;    
+    box-shadow: 0 0 20px rgba(13, 202, 240, 0.15), inset 0 0 20px rgba(13, 202, 240, 0.05);
+    backdrop-filter: blur(5px);
+    position: relative;
+    z-index: 10;
 }
 
-.terminal-header {
-    background-color: #111;
-    padding: 10px 15px;
-    border-bottom: 1px solid rgba(13, 202, 240, 0.2);
+.datapad-header {
+    background: linear-gradient(90deg, rgba(13, 202, 240, 0.1) 0%, transparent 100%);
+    border-bottom: 1px solid rgba(13, 202, 240, 0.3);
 }
 
-.terminal-buttons span {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    margin-right: 6px;
-}
-
-.btn-close-term { background-color: #ff5f56; }
-.btn-min-term { background-color: #ffbd2e; }
-.btn-max-term { background-color: #27c93f; }
-
-/* Permitimos que el texto respete los \n del JavaScript*/
-.terminal-text-container {
-    white-space: pre-wrap; 
-    line-height: 1.6;
-    font-size: 1.05rem;
-    height: 200px; /* Definimos el tamaño para la consola */
-    text-align: left !important; 
-    display: block !important;
-}
-
-/* Animación del cursor titilante */
-.blinking-cursor {
-    font-weight: bold;
-    color: var(--primary-color);
+.blink-icon {
     animation: blink-caret 1s step-end infinite;
+}
+
+/* Rediseñando los indicadores de Bootstrap para parecer nodos de datos */
+.cyber-indicators {
+    position: absolute;
+    bottom: -40px;
+}
+
+.cyber-indicators button {
+    width: 30px !important;
+    height: 3px !important;
+    background-color: var(--text-muted) !important;
+    border: none !important;
+    border-radius: 0 !important;
+    transition: all 0.3s ease;
+}
+
+.cyber-indicators button.active {
+    background-color: var(--primary-color) !important;
+    box-shadow: 0 0 8px var(--primary-color);
+    width: 50px !important; /* Se expande el activo */
+}
+
+.datapad-footer {
+    border-top: 1px solid rgba(13, 202, 240, 0.2);
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.cyber-btn {
+    font-size: 1.5rem !important;
+    font-weight: bold; 
+    padding: 0 20px;
+    transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.cyber-btn:hover {
+    color: #fff !important;
+    text-shadow: 0 0 12px var(--primary-color);
+    transform: scale(1.15);
+}
+
+/* Fijamos una altura mínima estable para móviles para que no salte el contenido */
+#datapadCarousel {
+    min-height: 250px; 
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    #datapadCarousel {
+        min-height: 280px; 
+    }
 }
 
 @keyframes blink-caret {
@@ -690,14 +769,4 @@ body.tech-theme {
         width: 100%;
     }
 
-    .terminal-text-container {
-        /* Altura de la consola en móviles */
-        height: 300px; 
-        
-        /* Reducimos un poquito el tamaño de la fuente en móviles para que se ajuste mejor en la pantalla */
-        font-size: 0.95rem; 
-    }
 }
-
-/* Añadimos Montserrat Font */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');

@@ -17,54 +17,104 @@ document.addEventListener("DOMContentLoaded", function () {
     //     lastScrollTop = scrollTop;
     // });
 
-    // --- Lógica del Typewriter (Terminal) ---
-    const textPart1 = "Soy un desarrollador de software, entusiasta de la tecnología 💻. Me apasiona la innovación, crear proyectos y aprender constantemente nuevas herramientas del mundo tech ⚡.\n\nCuando no estoy programando, probablemente estoy leyendo algún libro 📔📕, escuchando música 🎧, jugando un videojuego 🎮 o viendo películas y series 🍿.";
-
-    const textPart2 = "También soy amante del deporte, en especial del fútbol ⚽, voleibol 🏐, baloncesto 🏀 y tenis 🎾. Fiel seguidor del Real Madrid 👑, me identifico con sus valores sobre la resiliencia y la búsqueda constante de la excelencia 🏆.\n\nY, por supuesto, nada acompaña mejor estos hobbies que una buena taza de café ☕.";
-
-    const twElement = document.getElementById("typewriter-text");
+// --- Lógica del Datapad ---
+    const datapadCarousel = document.getElementById('datapadCarousel');
     
-    if (twElement) {
-        let currentArray = Array.from(textPart1);
-        let charIndex = 0;
-        let phase = 1; // 1: Escribir | 2: Borrar
-        let isShowingPart1 = true; // Controla qué texto se está mostrando
-
-        function typeWriter() {
-            let typeSpeed = 35; // Velocidad de tipeo base
-
-            if (phase === 1) {
-                // Escribiendo...
-                if (charIndex < currentArray.length) {
-                    twElement.textContent += currentArray[charIndex];
-                    charIndex++;
-                    // Pausa humana en signos de puntuación
-                    if (currentArray[charIndex - 1] === '.' || currentArray[charIndex - 1] === ',') typeSpeed = 300;
-                } else {
-                    // Cambio a fase de borrado tras una pausa.
-                    phase = 2;
-                    typeSpeed = 4000; // Tiempo de espera al finalizar la escritura antes de empezar a borrar
-                }
-            } else if (phase === 2) {
-                // Borrando...
-                typeSpeed = 10; // Velocidad de borrado rápido
-                if (charIndex > 0) {
-                    charIndex--;
-                    twElement.textContent = currentArray.slice(0, charIndex).join('');
-                } else {
-                    // Alternamos los textos.
-                    phase = 1;
-                    isShowingPart1 = !isShowingPart1; // Cambia entre true y false
-                    currentArray = Array.from(isShowingPart1 ? textPart1 : textPart2);
-                    typeSpeed = 800; // Pausa breve con la terminal vacía antes de iniciar
-                }
-            }
+    if (datapadCarousel) {
+        // Matriz de caracteres para la encriptación visual
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*<>";
+        
+        const decodeText = (element) => {
+            const targetText = element.getAttribute('data-text');
+            if (!targetText) return;
             
-            setTimeout(typeWriter, typeSpeed);
-        }
+            let iterations = 0;
+            const interval = setInterval(() => {
+                element.innerText = targetText.split("")
+                    .map((letter, index) => {
+                        // Si ya superamos el índice, mostramos la letra real
+                        if (index < iterations) {
+                            return targetText[index]; 
+                        }
+                        // Dejamos espacios y emojis intactos para que no parpadeen raro
+                        if (letter === " " || letter.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]/)) {
+                            return letter;
+                        }
+                        // Mostramos un carácter aleatorio
+                        return letters[Math.floor(Math.random() * letters.length)];
+                    })
+                    .join("");
 
-        // Retrasar el inicio
-        setTimeout(typeWriter, 1200);
+                if (iterations >= targetText.length) {
+                    clearInterval(interval);
+                    element.innerText = targetText; // Seguro final
+                }
+                iterations += 1; // Ajusta este número para que se descifre más rápido o más lento
+            }, 35); 
+        };
+
+        // Ejecutar el efecto en el primer slide al cargar la página
+        const initialActiveTexts = datapadCarousel.querySelectorAll('.carousel-item.active .hacker-decode');
+        initialActiveTexts.forEach(decodeText);
+
+        // Escuchar el evento nativo de Bootstrap cuando el carrusel cambia de slide
+        datapadCarousel.addEventListener('slide.bs.carousel', function (e) {
+            const nextTexts = e.relatedTarget.querySelectorAll('.hacker-decode');
+            nextTexts.forEach(decodeText);
+        });
+    }
+
+    // --- Lógica del fondo hacker ---
+    const hackerBg = document.getElementById('hacker-background');
+    
+    if (hackerBg) {
+        // Calculamos cuántas columnas caben en la pantalla (una cada 35px aprox)
+        const columnWidth = 35;
+        const columnsCount = Math.floor(window.innerWidth / columnWidth);
+        const hexChars = "0123456789ABCDEF";
+
+        for (let i = 0; i < columnsCount; i++) {
+            const column = document.createElement('div');
+            column.classList.add('hacker-column');
+            
+            // Distribuimos los colores: 80% Cyan (principal), 20% Magenta (acento)
+            column.classList.add(Math.random() > 0.8 ? 'hacker-magenta' : 'hacker-cyan');
+            
+            // Posicionamiento de izquierda a derecha
+            column.style.left = (i * columnWidth) + 'px';
+            
+            // Variación en la opacidad para dar sensación de profundidad
+            column.style.opacity = (Math.random() * 0.15 + 0.05).toString();
+
+            hackerBg.appendChild(column);
+
+            // Generador dinámico de texto
+            const updateColumn = () => {
+                let text = '';
+                // Altura aleatoria de las cadenas
+                const rows = 25 + Math.floor(Math.random() * 20); 
+                
+                for (let j = 0; j < rows; j++) {
+                    // 60% probabilidad de ser Binario, 40% de ser Hexadecimal
+                    if (Math.random() > 0.4) {
+                        text += Math.random() > 0.5 ? '0' : '1';
+                    } else {
+                        // Genera un par hexadecimal (ej. "A3", "4F")
+                        text += hexChars.charAt(Math.floor(Math.random() * hexChars.length)) + 
+                                hexChars.charAt(Math.floor(Math.random() * hexChars.length));
+                    }
+                    text += '<br>';
+                }
+                column.innerHTML = text;
+            };
+
+            // Primera carga del texto
+            updateColumn();
+
+            // Intervalo aleatorio para que las columnas "parpadeen" y se actualicen asíncronamente
+            const refreshRate = 150 + Math.random() * 400; // Entre 150ms y 550ms
+            setInterval(updateColumn, refreshRate);
+        }
     }
 
     // URL de tu API en producción (Render)
