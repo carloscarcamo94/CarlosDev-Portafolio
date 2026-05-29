@@ -738,12 +738,6 @@ body.tech-theme {
     align-items: center;
 }
 
-@media (max-width: 768px) {
-    #datapadCarousel {
-        min-height: 280px; 
-    }
-}
-
 @keyframes blink-caret {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
@@ -769,4 +763,37 @@ body.tech-theme {
         width: 100%;
     }
 
+    .portfolio-action-btn {
+        font-size: 1rem !important;     /* Reduce el tamaño de la fuente */
+        padding: 8px 16px !important;   /* Reduce el espacio interno */
+        width: auto !important;         /* Evita que fuercen el 100% del ancho si lo tenían */
+        white-space: nowrap;            /* Obliga a que el texto se mantenga en una sola línea */
+    }
+    
+    /* Si los botones están uno al lado del otro, reducimos el margen entre ellos */
+    .portfolio-action-btn + .portfolio-action-btn {
+        margin-left: 6px !important; 
+        margin-top: 0 !important;
+    }
+
+    #datapadCarousel {
+        min-height: 280px; 
+    }
+
+    /* Ajustes para centrar el icono en About Section */
+    #about h1 i.avatar-neon {
+        display: block;             /* Obligamos al icono a saltar a su propia línea*/
+        margin-right: 0 !important; /* Anulamos la clase 'me-3' de Bootstrap para centrarlo perfecto */
+        margin-bottom: 10px;        /* Separación entre el icono y el texto */
+        font-size: 3.4rem;            /* Ajustamos el tamaño del icono */
+    }
+
+    /* Ajustes para el texto en About Section */
+    #about h1 span.scan-effect {
+        display: inline-block;         /* Pasamos el texto a su propia línea*/
+        font-size: 2.2rem;        /* Reducimos ligeramente el texto para que no desborde la pantalla */
+        line-height: 1.2;
+    }
+
+    
 }
