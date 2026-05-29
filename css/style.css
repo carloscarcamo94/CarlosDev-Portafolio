@@ -731,11 +731,24 @@ body.tech-theme {
     transform: scale(1.15);
 }
 
-/* Fijamos una altura mínima estable para móviles para que no salte el contenido */
+/* Fijamos una altura mínima estable para que no salte el contenido */
 #datapadCarousel {
     min-height: 250px; 
+}
+
+/* Fijamos la altura de la pista interna del carrusel */
+.carousel-inner {
+    min-height: 250px;
+}
+
+/* Aplicamos flexbox a las pestañas activas o en transición. Esto nos permitirá centrar el contenido perfectamente sin romper la animación nativa de Bootstrap. */
+.carousel-item.active,
+.carousel-item-next,
+.carousel-item-prev {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 250px;
 }
 
 @keyframes blink-caret {
@@ -764,7 +777,7 @@ body.tech-theme {
     }
 
     .portfolio-action-btn {
-        font-size: 1rem !important;     /* Reduce el tamaño de la fuente */
+        font-size: 1.2rem !important;     /* Reduce el tamaño de la fuente */
         padding: 8px 16px !important;   /* Reduce el espacio interno */
         width: auto !important;         /* Evita que fuercen el 100% del ancho si lo tenían */
         white-space: nowrap;            /* Obliga a que el texto se mantenga en una sola línea */
@@ -776,24 +789,30 @@ body.tech-theme {
         margin-top: 0 !important;
     }
 
-    #datapadCarousel {
-        min-height: 280px; 
+    #datapadCarousel, 
+    .carousel-inner {
+        min-height: 300px; 
+    }
+    
+    .carousel-item.active,
+    .carousel-item-next,
+    .carousel-item-prev {
+        min-height: 300px;
     }
 
     /* Ajustes para centrar el icono en About Section */
     #about h1 i.avatar-neon {
-        display: block;             /* Obligamos al icono a saltar a su propia línea*/
+        display: block; /* Obligamos al icono a saltar a su propia línea*/
         margin-right: 0 !important; /* Anulamos la clase 'me-3' de Bootstrap para centrarlo perfecto */
-        margin-bottom: 10px;        /* Separación entre el icono y el texto */
-        font-size: 3.4rem;            /* Ajustamos el tamaño del icono */
+        margin-bottom: 10px;    /* Separación entre el icono y el texto */
+        font-size: 3.0rem;  /* Ajustamos el tamaño del icono */
     }
 
     /* Ajustes para el texto en About Section */
     #about h1 span.scan-effect {
-        display: inline-block;         /* Pasamos el texto a su propia línea*/
-        font-size: 2.2rem;        /* Reducimos ligeramente el texto para que no desborde la pantalla */
+        display: inline-block;  /* Pasamos el texto a su propia línea*/
+        font-size: 2.2rem;  /* Reducimos ligeramente el texto para que no desborde la pantalla */
         line-height: 1.2;
     }
 
-    
 }
