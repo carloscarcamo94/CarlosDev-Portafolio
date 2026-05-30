@@ -777,7 +777,7 @@ body.tech-theme {
     }
 
     .portfolio-action-btn {
-        font-size: 1rem !important;     /* Reduce el tamaño de la fuente */
+        font-size: 1.1rem !important;     /* Reduce el tamaño de la fuente */
         padding: 8px 16px !important;   /* Reduce el espacio interno */
         width: auto !important;         /* Evita que fuercen el 100% del ancho si lo tenían */
         white-space: nowrap;            /* Obliga a que el texto se mantenga en una sola línea */
@@ -785,19 +785,19 @@ body.tech-theme {
     
     /* Si los botones están uno al lado del otro, reducimos el margen entre ellos */
     .portfolio-action-btn + .portfolio-action-btn {
-        margin-left: 5px !important; 
+        margin-left: 1px !important; 
         margin-top: 0 !important;
     }
 
     #datapadCarousel, 
     .carousel-inner {
-        min-height: 320px; 
+        min-height: 340px; 
     }
     
     .carousel-item.active,
     .carousel-item-next,
     .carousel-item-prev {
-        min-height: 320px;
+        min-height: 340px;
     }
 
     /* Ajustes para centrar el icono en About Section */
