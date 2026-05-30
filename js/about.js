@@ -119,15 +119,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // URL de tu API en producción (Render)
     const apiUrl = "https://api-contactform.onrender.com/api/libros/actuales";
-    const lecturasContainer = document.getElementById("lecturas-container");
+    
+    // Capturamos los nuevos contenedores del HTML
+    const spinner = document.getElementById("loading-spinner");
+    const librosWrapper = document.getElementById("libros-wrapper");
+    const readingContainer = document.getElementById("reading-books-container");
+    const finishedContainer = document.getElementById("finished-books-container");
 
-    // Función para obtener y renderizar los libros
+    // Función principal para obtener y distribuir los libros
     async function fetchLibros() {
         try {
             const response = await fetch(apiUrl);
             
             if (response.status === 204) {
-                renderEmptyState("Actualmente no tengo lecturas en progreso.");
+                renderEmptyState("Actualmente no tengo lecturas en mi biblioteca.");
                 return;
             }
 
@@ -136,7 +141,18 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             const libros = await response.json();
-            renderLibros(libros);
+            
+            // Ocultamos el spinner y mostramos el contenedor principal
+            spinner.style.display = 'none';
+            librosWrapper.style.display = 'block';
+
+            // Filtramos los libros por su estado exacto en Notion
+            const readingBooks = libros.filter(libro => libro.estado === 'Reading');
+            const finishedBooks = libros.filter(libro => libro.estado === 'Finished');
+
+            // Renderizamos cada categoría en su respectivo contenedor
+            renderListaLibros(readingBooks, readingContainer, "No hay lecturas en progreso en este momento.");
+            renderListaLibros(finishedBooks, finishedContainer, "Aún no hay libros completados en el registro.");
 
         } catch (error) {
             console.error("Error al obtener libros:", error);
@@ -144,33 +160,49 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Función para dibujar las tarjetas HTML
-    function renderLibros(libros) {
-        lecturasContainer.innerHTML = ''; // Limpiar el spinner
+    // Función modular para dibujar las tarjetas en el DOM
+    function renderListaLibros(librosArray, contenedor, mensajeVacio) {
+        contenedor.innerHTML = ''; // Limpiamos cualquier contenido previo
 
-        // Creamos un grid de Bootstrap para las tarjetas
-        const row = document.createElement("div");
-        row.className = "row g-4";
+        // Validamos si la lista está vacía
+        if (librosArray.length === 0) {
+            contenedor.innerHTML = `<p class="text-muted font-monospace ps-3">${mensajeVacio}</p>`;
+            return;
+        }
 
-        libros.forEach(libro => {
+        librosArray.forEach(libro => {
             const col = document.createElement("div");
             col.className = "col-md-6";
             
-            // Reemplazo de portada nula por una imagen Sci-Fi por defecto si no hay URL
+            // Lógica de datos
             const coverImage = libro.portadaUrl ? libro.portadaUrl : 'assets/logos/carlosdev-icon.svg';
             const progressValue = libro.progreso ? (libro.progreso * 100).toFixed(0) : 0;
+            const isFinished = libro.estado === 'Finished';
+            
+            // Dinamismo de colores (Cyan para Reading, Verde para Finished)
+            const themeClass = isFinished ? 'success' : 'info';
+            const shadowColor = isFinished ? '#198754' : '#0dcaf0'; // Códigos HEX de Bootstrap
+            
+            // Lógica para Rating (Estrellas de Notion)
+            let ratingHtml = '';
+            if (isFinished && libro.rating) {
+                // Asume que libro.rating trae las estrellas en texto, ej: "⭐⭐⭐⭐"
+                ratingHtml = `<div class="mt-1 text-warning" style="letter-spacing: 2px;">${libro.rating}</div>`;
+            }
 
+            // Construcción del HTML de la tarjeta
             col.innerHTML = `
-                <div class="card h-100 text-white cyber-card">
+                <div class="card h-100 text-white cyber-card border border-${themeClass} border-opacity-25">
                     <div class="row g-0 h-100">
                         <div class="col-4 d-flex align-items-center justify-content-center p-3">
-                            <img src="${coverImage}" class="img-fluid rounded cyber-cover" alt="Portada de ${libro.titulo}" style="max-height: 180px; object-fit: cover;">
+                            <img src="${coverImage}" class="img-fluid rounded cyber-cover shadow-lg" alt="Portada de ${libro.titulo}" style="max-height: 180px; object-fit: cover;">
                         </div>
                         <div class="col-8 d-flex flex-column justify-content-center">
-                            <div class="card-body">
-                                <h4 class="card-title text-info fw-bold mb-2">${libro.titulo || 'Sin título'}</h4>
+                            <div class="card-body d-flex flex-column h-100">
                                 
-                                <p class="card-text mb-2 text-info fw-medium">
+                                <h4 class="card-title text-${themeClass} fw-bold mb-2">${libro.titulo || 'Sin título'}</h4>
+                                
+                                <p class="card-text mb-2 text-${themeClass} fw-medium">
                                     <i class="fas fa-pen-nib me-2"></i>${libro.autor || 'Desconocido'}
                                 </p>
                                 
@@ -178,26 +210,34 @@ document.addEventListener("DOMContentLoaded", function () {
                                     <span class="badge bg-dark border border-secondary text-light">${libro.genero || 'General'}</span>
                                 </p>
                                 
-                                <div class="progress mt-auto bg-dark border border-info border-opacity-25" style="height: 6px;">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: ${progressValue}%; box-shadow: 0 0 5px #0dcaf0;" aria-valuenow="${progressValue}" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="mt-auto">
+                                    <div class="progress bg-dark border border-${themeClass} border-opacity-25" style="height: 6px;">
+                                        <div class="progress-bar bg-${themeClass}" role="progressbar" style="width: ${progressValue}%; box-shadow: 0 0 5px ${shadowColor};" aria-valuenow="${progressValue}" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    
+                                    <div class="d-flex justify-content-between align-items-end mt-2">
+                                        <div>
+                                            ${isFinished ? `<span class="badge bg-success bg-opacity-10 text-success border border-success rounded-pill mb-1"><i class="fas fa-check-circle me-1"></i>Finished</span>` : ''}
+                                            ${ratingHtml}
+                                        </div>
+                                        <small class="font-monospace text-${themeClass} fw-bold">${progressValue}% completado</small>
+                                    </div>
                                 </div>
-                                <div class="text-end mt-2">
-                                    <small class="font-monospace text-info fw-bold">${progressValue}% completado</small>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
             `;
-            row.appendChild(col);
+            contenedor.appendChild(col);
         });
-
-        lecturasContainer.appendChild(row);
     }
 
-    // Función para manejar estados vacíos o errores
+    // Función para manejar errores de conexión o catálogos vacíos
     function renderEmptyState(mensaje) {
-        lecturasContainer.innerHTML = `
+        spinner.style.display = 'none';
+        librosWrapper.style.display = 'block';
+        librosWrapper.innerHTML = `
             <div class="text-center py-5 border border-warning border-opacity-25 rounded bg-black">
                 <i class="fas fa-exclamation-triangle fa-2x text-warning mb-3"></i>
                 <p class="text-light-gray font-monospace">${mensaje}</p>
