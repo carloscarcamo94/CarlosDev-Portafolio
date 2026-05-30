@@ -777,7 +777,7 @@ body.tech-theme {
     }
 
     .portfolio-action-btn {
-        font-size: 1.2rem !important;     /* Reduce el tamaño de la fuente */
+        font-size: 1rem !important;     /* Reduce el tamaño de la fuente */
         padding: 8px 16px !important;   /* Reduce el espacio interno */
         width: auto !important;         /* Evita que fuercen el 100% del ancho si lo tenían */
         white-space: nowrap;            /* Obliga a que el texto se mantenga en una sola línea */
@@ -785,19 +785,19 @@ body.tech-theme {
     
     /* Si los botones están uno al lado del otro, reducimos el margen entre ellos */
     .portfolio-action-btn + .portfolio-action-btn {
-        margin-left: 6px !important; 
+        margin-left: 5px !important; 
         margin-top: 0 !important;
     }
 
     #datapadCarousel, 
     .carousel-inner {
-        min-height: 300px; 
+        min-height: 320px; 
     }
     
     .carousel-item.active,
     .carousel-item-next,
     .carousel-item-prev {
-        min-height: 300px;
+        min-height: 320px;
     }
 
     /* Ajustes para centrar el icono en About Section */
@@ -815,4 +815,20 @@ body.tech-theme {
         line-height: 1.2;
     }
 
+    /* Aumentamos el tamaño y grosor de los datos del fondo hacker */
+    .hacker-column {
+        font-size: 16px !important;  /* Letra un poco más grande */
+        font-weight: bold;           /* Le da más cuerpo para que no se pierda */
+    }
+    
+    /* Suavizamos la oscuridad de las scanlines para que dejen pasar la luz del neón */
+    .scanlines {
+        background: repeating-linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0) 0px,
+            rgba(255, 255, 255, 0) 2px,
+            rgba(0, 0, 0, 0.10) 2px, /* Bajamos la sombra oscura de 0.25 a 0.10 */
+            rgba(0, 0, 0, 0.10) 4px
+        ) !important;
+    }
 }

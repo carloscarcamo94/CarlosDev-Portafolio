@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
             column.style.left = (i * columnWidth) + 'px';
             
             // Variación en la opacidad para dar sensación de profundidad
-            column.style.opacity = (Math.random() * 0.15 + 0.05).toString();
+            column.style.opacity = (Math.random() * 0.25 + 0.15).toString();
 
             hackerBg.appendChild(column);
 
