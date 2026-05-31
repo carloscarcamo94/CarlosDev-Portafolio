@@ -117,9 +117,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // URL de tu API en producción (Render)
+    // URL de la API de libros en producción
     const apiUrl = "https://api-contactform.onrender.com/api/libros/actuales";
-    
     // Capturamos los nuevos contenedores del HTML
     const spinner = document.getElementById("loading-spinner");
     const librosWrapper = document.getElementById("libros-wrapper");
@@ -247,4 +246,94 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Iniciar la petición
     fetchLibros();
+
+    // URL de la API de viajes en producción
+    const travelApiUrl = "https://api-contactform.onrender.com/api/libros/viajes";
+    // Capturamos los nuevos contenedores del HTML
+    const travelSpinner = document.getElementById("travel-loading-spinner");
+    const viajesWrapper = document.getElementById("viajes-wrapper");
+    const wantToGoContainer = document.getElementById("want-to-go-container");
+    const visitedContainer = document.getElementById("visited-container");
+
+    async function fetchViajes() {
+        if (!travelSpinner) return; // Por si no estamos en la pestaña correcta
+        
+        try {
+            const response = await fetch(travelApiUrl);
+            
+            if (response.status === 204) return renderTravelEmpty("No hay destinos en la bitácora.");
+            if (!response.ok) throw new Error("Error en el servidor de viajes");
+
+            const viajes = await response.json();
+            
+            travelSpinner.style.display = 'none';
+            viajesWrapper.style.display = 'block';
+
+            const wantToGo = viajes.filter(v => v.estado === 'Want to go');
+            const visited = viajes.filter(v => v.estado === 'Visited');
+
+            renderViajes(wantToGo, wantToGoContainer, "magenta");
+            renderViajes(visited, visitedContainer, "info");
+
+        } catch (error) {
+            console.error("Error viajes:", error);
+            renderTravelEmpty("Sistemas de navegación caídos. Reintentando...");
+        }
+    }
+
+    function renderViajes(viajesArray, contenedor, themeColor) {
+        contenedor.innerHTML = '';
+        if (viajesArray.length === 0) {
+            contenedor.innerHTML = `<p class="text-muted font-monospace ps-3">Sin registros en este sector.</p>`;
+            return;
+        }
+
+        viajesArray.forEach(viaje => {
+            const col = document.createElement("div");
+            col.className = "col-lg-4 col-md-6"; // 3 tarjetas por fila en PC
+            
+            const coverImage = viaje.portadaUrl ? viaje.portadaUrl : 'assets/logos/carlosdev-icon.svg';
+            const heartIcon = viaje.favorito ? `<span class="favorite-badge"><i class="fas fa-heart text-${themeColor}"></i></span>` : '';
+            const bookedIcon = viaje.reservado ? `<span class="badge bg-success bg-opacity-25 text-success border border-success mt-2"><i class="fas fa-ticket-alt me-1"></i>Vuelo Reservado</span>` : '';
+
+            col.innerHTML = `
+                <div class="cyber-travel-card h-100">
+                    <div class="travel-img-wrapper">
+                        <img src="${coverImage}" class="travel-cover" alt="${viaje.nombre}">
+                        ${heartIcon}
+                    </div>
+                    <div class="card-body p-4 d-flex flex-column">
+                        <h4 class="text-${themeColor} fw-bold mb-1">${viaje.nombre}</h4>
+                        <p class="text-light-gray font-monospace small mb-3">
+                            <i class="fas fa-globe-americas me-1 text-muted"></i> ${viaje.continente || 'Planeta Tierra'}
+                        </p>
+                        
+                        <div class="d-flex flex-wrap gap-2 mb-3">
+                            ${viaje.duracion ? `<span class="badge bg-dark border border-secondary"><i class="far fa-clock me-1"></i>${viaje.duracion}</span>` : ''}
+                            ${viaje.presupuesto ? `<span class="badge bg-dark border border-secondary"><i class="fas fa-wallet me-1"></i>${viaje.presupuesto}</span>` : ''}
+                        </div>
+                        
+                        <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
+                            ${bookedIcon}
+                        </div>
+                    </div>
+                </div>
+            `;
+            contenedor.appendChild(col);
+        });
+    }
+
+    function renderTravelEmpty(mensaje) {
+        travelSpinner.style.display = 'none';
+        viajesWrapper.style.display = 'block';
+        viajesWrapper.innerHTML = `
+            <div class="text-center py-5 border border-danger border-opacity-25 rounded bg-black">
+                <i class="fas fa-satellite-dish fa-2x text-danger mb-3"></i>
+                <p class="text-light-gray font-monospace">${mensaje}</p>
+            </div>
+        `;
+    }
+
+    // Iniciar carga de viajes
+    fetchViajes();
 });
