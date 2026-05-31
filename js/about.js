@@ -248,7 +248,7 @@ document.addEventListener("DOMContentLoaded", function () {
     fetchLibros();
 
     // URL de la API de viajes en producción
-    const travelApiUrl = "https://api-contactform.onrender.com/api/libros/viajes";
+    const travelApiUrl = "https://api-contactform.onrender.com/api/viajes/destinos";
     // Capturamos los nuevos contenedores del HTML
     const travelSpinner = document.getElementById("travel-loading-spinner");
     const viajesWrapper = document.getElementById("viajes-wrapper");
