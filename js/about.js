@@ -305,7 +305,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div class="card-body p-4 d-flex flex-column">
                         <h4 class="text-${themeColor} fw-bold mb-1">${viaje.nombre}</h4>
                         <p class="text-light-gray font-monospace small mb-3">
-                            <i class="fas fa-globe-americas me-1 text-muted"></i> ${viaje.continente || 'Planeta Tierra'}
+                            <i class="fas fa-globe-americas me-1"></i> ${viaje.continente || 'Planeta Tierra'}
                         </p>
                         
                         <div class="d-flex flex-wrap gap-2 mb-3">
@@ -336,4 +336,89 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Iniciar carga de viajes
     fetchViajes();
+
+    // URL de la API de Spotify en producción
+    const spotifyApiUrl = "https://api-contactform.onrender.com/api/spotify/actual";
+    // Capturamos los nuevos contenedores del HTML
+    const spotifyLoading = document.getElementById("spotify-loading");
+    const spotifyContainer = document.getElementById("spotify-widget-container");
+
+    async function fetchSpotify() {
+        if (!spotifyLoading) return;
+
+        try {
+            const response = await fetch(spotifyApiUrl);
+            if (response.status === 204) {
+                renderSpotifyError("Dispositivo fuera de línea. Transmisión inactiva.");
+                return;
+            }
+
+            const track = await response.json();
+            
+            spotifyLoading.style.display = 'none';
+            spotifyContainer.style.display = 'block';
+
+            // Determinamos los estados y colores del HUD
+            const isLive = track.escuchandoAhora;
+            const textTheme = isLive ? "text-info" : "text-muted";
+            const statusLabel = isLive ? "TRANSMITIENDO AHORA" : "ÚLTIMA REPRODUCCIÓN";
+            
+            // Render de barras animadas del ecualizador solo si suena en vivo
+            const equalizerHtml = isLive ? `
+                <div class="cyber-equalizer">
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                </div>
+            ` : '<i class="fas fa-moon text-muted fs-5"></i>';
+
+            spotifyContainer.innerHTML = `
+                <div class="cyber-spotify-card shadow-lg">
+                    <div class="spotify-status-bar d-flex justify-content-between align-items-center px-3 py-2">
+                        <span class="${textTheme} font-monospace small fw-bold tracking-wider">
+                            <i class="fab fa-spotify me-2 ${isLive ? 'fa-spin text-info' : ''}"></i>${statusLabel}
+                        </span>
+                        ${equalizerHtml}
+                    </div>
+                    
+                    <div class="p-4 d-flex align-items-center gap-4">
+                        <img src="${track.portadaUrl || 'assets/logos/carlosdev-icon.svg'}" class="img-fluid rounded spotify-album-cover" alt="Portada de ${track.titulo}">
+                        
+                        <div class="overflow-hidden flex-grow-1">
+                            <h4 class="text-white fw-bold text-truncate mb-1 font-monospace" title="${track.titulo}">${track.titulo}</h4>
+                            <p class="text-info fw-medium text-truncate mb-2 small" title="${track.autor}">
+                                <i class="fas fa-music me-1 text-opacity-50"></i> ${track.autor}
+                            </p>
+                            <p class="text-muted text-truncate mb-3 small font-monospace" style="font-size: 0.75rem;">
+                                <i class="fas fa-compact-disc me-1"></i> ${track.album}
+                            </p>
+                            
+                            <a href="${track.spotifyUrl}" target="_blank" class="btn spotify-link-btn rounded-pill px-3 py-1 font-monospace fw-bold text-decoration-none d-inline-flex align-items-center gap-1">
+                                <i class="fab fa-spotify"></i> Open Spotify
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+        } catch (error) {
+            console.error("Error al conectar con Spotify Service:", error);
+            renderSpotifyError("Error de enlace de frecuencia con los servidores de audio.");
+        }
+    }
+
+    function renderSpotifyError(mensaje) {
+        spotifyLoading.style.display = 'none';
+        spotifyContainer.style.display = 'block';
+        spotifyContainer.innerHTML = `
+            <div class="text-center py-4 border border-info border-opacity-25 rounded bg-black bg-opacity-50 font-monospace">
+                <i class="fab fa-spotify fa-2x text-muted mb-2"></i>
+                <p class="text-muted small m-0">${mensaje}</p>
+            </div>
+        `;
+    }
+
+    // Inicializar carga del componente
+    fetchSpotify();
 });

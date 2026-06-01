@@ -576,11 +576,125 @@ body.tech-theme {
     position: absolute;
     top: 15px;
     right: 15px;
-    background: rgba(0,0,0,0.7);
-    padding: 8px;
+    background: rgba(0,0,0,0.5);
+    padding: 7px;
     border-radius: 50%;
     border: 1px solid var(--secundary-color);
     box-shadow: 0 0 10px var(--secundary-color);
+}
+
+/* --- Tarjetas de Deportes --- */
+.cyber-sport-card {
+    background: linear-gradient(135deg, rgba(10, 10, 15, 0.8) 0%, rgba(5, 5, 5, 0.9) 100%);
+    border: 1px solid rgba(13, 202, 240, 0.2);
+    position: relative;
+    overflow: hidden;
+    /* Corte biselado sutil en la esquina superior izquierda */
+    clip-path: polygon(15px 0, 100% 0, 100% 100%, 0 100%, 0 15px);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    backdrop-filter: blur(4px);
+}
+
+/* Línea de escaneo decorativa lateral (HUD Accent) */
+.sport-hud-accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--primary-color);
+    box-shadow: 0 0 8px var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+/* Efectos en Hover */
+.cyber-sport-card:hover {
+    transform: scale(1.03);
+    border-color: rgba(240, 13, 202, 0.4); /* Cambia el borde a magenta claro */
+    box-shadow: 0 0 20px rgba(240, 13, 202, 0.1), inset 0 0 15px rgba(13, 202, 240, 0.05);
+}
+
+.cyber-sport-card:hover .sport-hud-accent {
+    background: var(--secundary-color); /* La barra cambia a magenta */
+    box-shadow: 0 0 12px var(--secundary-color);
+    width: 5px;
+}
+
+/* Resplandor sutil en los iconos deportivos */
+.sport-icon-glow {
+    filter: drop-shadow(0 0 4px currentColor);
+    transition: transform 0.3s ease;
+}
+
+.cyber-sport-card:hover .sport-icon-glow {
+    transform: rotate(10deg) scale(1.1);
+}
+
+/* Detalle de rejilla HUD de fondo para dar textura de monitor */
+.sport-card-body {
+    background-image: linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* --- Tarjetas de Música --- */
+.cyber-spotify-card {
+    background: rgba(10, 10, 12, 0.9);
+    border: 1px solid rgba(13, 202, 240, 0.25);
+    border-radius: 16px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(13, 202, 240, 0.05);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.spotify-status-bar {
+    background: linear-gradient(90deg, rgba(13, 202, 240, 0.15) 0%, transparent 100%);
+    border-bottom: 1px solid rgba(13, 202, 240, 0.2);
+}
+
+.spotify-album-cover {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0,0,0,0.6);
+}
+
+/* Animación del ecualizador Cyberpunk */
+.cyber-equalizer {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 18px;
+}
+
+.eq-bar {
+    width: 3px;
+    background-color: var(--primary-color);
+    animation: bounce-eq 1s ease-in-out infinite alternate;
+}
+
+.eq-bar:nth-child(2) { animation-duration: 0.6s; background-color: var(--secundary-color); }
+.eq-bar:nth-child(3) { animation-duration: 0.8s; }
+.eq-bar:nth-child(4) { animation-duration: 0.5s; background-color: var(--secundary-color); }
+
+@keyframes bounce-eq {
+    0% { height: 3px; }
+    100% { height: 18px; }
+}
+
+/* Enlace a Spotify con brillo */
+.spotify-link-btn {
+    border: 1px solid #1DB954;
+    color: #1DB954;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.spotify-link-btn:hover {
+    background-color: #1DB954 !important;
+    color: #000 !important;
+    box-shadow: 0 0 12px #1DB954;
 }
 
 .avatar-neon {
