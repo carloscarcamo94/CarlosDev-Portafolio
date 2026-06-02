@@ -360,8 +360,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Determinamos los estados y colores del HUD
             const isLive = track.escuchandoAhora;
-            const textTheme = isLive ? "text-info" : "text-muted";
-            const statusLabel = isLive ? "TRANSMITIENDO AHORA" : "ÚLTIMA REPRODUCCIÓN";
+            const textTheme = isLive ? "text-info" : "text-light-gray";
+            const statusLabel = isLive ? "Escuchando ahora" : "Última reproducción";
             
             // Render de barras animadas del ecualizador solo si suena en vivo
             const equalizerHtml = isLive ? `
@@ -371,7 +371,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div class="eq-bar"></div>
                     <div class="eq-bar"></div>
                 </div>
-            ` : '<i class="fas fa-moon text-muted fs-5"></i>';
+            ` : '<i class="fas fa-moon text-light-gray fs-5"></i>';
 
             spotifyContainer.innerHTML = `
                 <div class="cyber-spotify-card shadow-lg">
@@ -386,11 +386,11 @@ document.addEventListener("DOMContentLoaded", function () {
                         <img src="${track.portadaUrl || 'assets/logos/carlosdev-icon.svg'}" class="img-fluid rounded spotify-album-cover" alt="Portada de ${track.titulo}">
                         
                         <div class="overflow-hidden flex-grow-1">
-                            <h4 class="text-white fw-bold text-truncate mb-1 font-monospace" title="${track.titulo}">${track.titulo}</h4>
-                            <p class="text-info fw-medium text-truncate mb-2 small" title="${track.autor}">
+                            <h4 class="text-white fw-bold mb-1 font-monospace" title="${track.titulo}">${track.titulo}</h4>
+                            <p class="text-info fw-medium mb-2 small" title="${track.autor}">
                                 <i class="fas fa-music me-1 text-opacity-50"></i> ${track.autor}
                             </p>
-                            <p class="text-muted text-truncate mb-3 small font-monospace" style="font-size: 0.75rem;">
+                            <p class="text-light-gray mb-3 small font-monospace" style="font-size: 0.85rem;">
                                 <i class="fas fa-compact-disc me-1"></i> ${track.album}
                             </p>
                             
