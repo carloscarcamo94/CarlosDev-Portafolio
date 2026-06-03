@@ -363,15 +363,10 @@ document.addEventListener("DOMContentLoaded", function () {
             const textTheme = isLive ? "text-info" : "text-light-gray";
             const statusLabel = isLive ? "Escuchando ahora" : "Última reproducción";
             
-            // Render de barras animadas del ecualizador solo si suena en vivo
-            const equalizerHtml = isLive ? `
-                <div class="cyber-equalizer">
-                    <div class="eq-bar"></div>
-                    <div class="eq-bar"></div>
-                    <div class="eq-bar"></div>
-                    <div class="eq-bar"></div>
-                </div>
-            ` : '<i class="fas fa-moon text-light-gray fs-5"></i>';
+            // Render de la nota musical animada si suena en vivo
+            const equalizerHtml = isLive ? 
+                '<i class="fas fa-music animated-note"></i>' : 
+                '<i class="fas fa-moon text-light-gray fs-5"></i>';
 
             spotifyContainer.innerHTML = `
                 <div class="cyber-spotify-card shadow-lg">
@@ -385,16 +380,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div class="p-4 d-flex align-items-center gap-4">
                         <img src="${track.portadaUrl || 'assets/logos/carlosdev-icon.svg'}" class="img-fluid rounded spotify-album-cover" alt="Portada de ${track.titulo}">
                         
-                        <div class="overflow-hidden flex-grow-1">
-                            <h4 class="text-white fw-bold mb-1 font-monospace" title="${track.titulo}">${track.titulo}</h4>
-                            <p class="text-info fw-medium mb-2 small" title="${track.autor}">
+                        <div class="flex-grow-1" style="min-width: 0;">
+                            <h4 class="text-white fw-bold text-truncate mb-1 font-monospace" title="${track.titulo}">${track.titulo}</h4>
+                            <p class="text-info fw-medium text-truncate mb-2 small" title="${track.autor}">
                                 <i class="fas fa-music me-1 text-opacity-50"></i> ${track.autor}
                             </p>
-                            <p class="text-light-gray mb-3 small font-monospace" style="font-size: 0.85rem;">
+                            <p class="text-light-gray text-truncate mb-3 small font-monospace" style="font-size: 0.85rem;">
                                 <i class="fas fa-compact-disc me-1"></i> ${track.album}
                             </p>
                             
-                            <a href="${track.spotifyUrl}" target="_blank" class="btn spotify-link-btn rounded-pill px-3 py-1 font-monospace fw-bold text-decoration-none d-inline-flex align-items-center gap-1">
+                            <a href="${track.spotifyUrl}" target="_blank" class="btn spotify-link-btn rounded-pill px-3 py-1 mb-1 ms-1 font-monospace fw-bold text-decoration-none d-inline-flex align-items-center gap-1">
                                 <i class="fab fa-spotify"></i> Open Spotify
                             </a>
                         </div>
