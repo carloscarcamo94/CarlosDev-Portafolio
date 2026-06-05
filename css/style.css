@@ -572,15 +572,23 @@ body.tech-theme {
     filter: brightness(1) contrast(1.1);
 }
 
-.favorite-badge {
+.cyber-heart-icon {
     position: absolute;
     top: 15px;
     right: 15px;
-    background: rgba(0,0,0,0.5);
-    padding: 7px;
-    border-radius: 50%;
-    border: 1px solid var(--secundary-color);
-    box-shadow: 0 0 10px var(--secundary-color);
+    font-size: 1.2rem;
+    color: #ff00ea; /* Magenta brillante estático */
+    -webkit-text-stroke: 1px rgba(107, 0, 35, 0.4);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto de rebote suave */
+    z-index: 10;
+}
+
+/* Efecto de iluminación al hacer hover sobre la tarjeta o el corazón */
+.cyber-travel-card:hover .cyber-heart-icon,
+.cyber-heart-icon:hover {
+    transform: scale(1.13); /* Hacemos crecer el corazón */
+    color: #ff33ee; /* Se vuelve ligeramente más claro al brillar */
+    -webkit-text-stroke: 1px rgba(107, 0, 35, 0.6);
 }
 
 /* --- Tarjetas de Deportes --- */

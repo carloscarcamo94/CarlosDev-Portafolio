@@ -293,7 +293,7 @@ document.addEventListener("DOMContentLoaded", function () {
             col.className = "col-lg-4 col-md-6"; // 3 tarjetas por fila en PC
             
             const coverImage = viaje.portadaUrl ? viaje.portadaUrl : 'assets/logos/carlosdev-icon.svg';
-            const heartIcon = viaje.favorito ? `<span class="favorite-badge"><i class="fas fa-heart text-${themeColor}"></i></span>` : '';
+            const heartIcon = viaje.favorito ? `<i class="fas fa-heart cyber-heart-icon" title="Destino Favorito"></i>` : '';
             const bookedIcon = viaje.reservado ? `<span class="badge bg-success bg-opacity-25 text-success border border-success mt-2"><i class="fas fa-ticket-alt me-1"></i>Vuelo Reservado</span>` : '';
 
             col.innerHTML = `
