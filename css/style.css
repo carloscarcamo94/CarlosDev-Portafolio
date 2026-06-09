@@ -671,8 +671,11 @@ body.tech-theme {
 
 .cyber-sport-front {
     position: relative; /* Define la altura de la tarjeta */
-    transform: rotateY(0deg);
+    transform: rotateY(0deg) translateZ(1px);
     z-index: 2;
+
+    -webkit-font-smoothing: antialiased;
+    backface-visibility: hidden;
 }
 
 .cyber-sport-back {
@@ -713,7 +716,7 @@ body.tech-theme {
 
 /* Mantiene el crecimiento suave solo en la parte frontal */
 .cyber-sport-front.cyber-sport-card:hover {
-    transform: rotateY(0deg) scale(1.03) !important;
+    transform: rotateY(0deg) scale(1.03) translateZ(1px) !important;
 }
 
 /* Anula el crecimiento en la parte trasera y fuerza a que se quede quieta a 180 grados */
