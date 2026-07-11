@@ -416,4 +416,58 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Inicializar carga del componente
     fetchSpotify();
+
+    const topTracksApiUrl = "https://api-contactform.onrender.com/api/spotify/top-tracks";
+    const topTracksSection = document.getElementById("top-tracks-section");
+    const topTracksContainer = document.getElementById("top-tracks-container");
+
+    async function fetchTopTracks() {
+        if (!topTracksContainer) return;
+
+        try {
+            const response = await fetch(topTracksApiUrl);
+            
+            if (response.status === 204) {
+                topTracksSection.style.display = 'none';
+                return;
+            }
+            if (!response.ok) throw new Error("Error al solicitar el Top 5");
+
+            const tracks = await response.json();
+            
+            topTracksContainer.innerHTML = '';
+            topTracksSection.style.display = 'block';
+
+            tracks.forEach((track, index) => {
+                const trackRow = document.createElement("a");
+                trackRow.href = track.spotifyUrl;
+                trackRow.target = "_blank";
+                trackRow.className = "cyber-top-track d-flex align-items-center p-2 text-decoration-none";
+                
+                trackRow.innerHTML = `
+                    <div class="track-number font-monospace me-2 text-center text-light-gray fw-bold" style="width: 20px;">
+                        ${index + 1}
+                    </div>
+                    <img src="${track.portadaUrl}" class="top-track-img rounded me-3" alt="Portada de ${track.titulo}" loading="lazy">
+                    <div class="flex-grow-1 overflow-hidden" style="min-width: 0;">
+                        <h6 class="track-title text-white font-monospace mb-1 text-truncate">${track.titulo}</h6>
+                        <p class="text-light-gray small mb-0 text-truncate">
+                            <i class="fas fa-microphone-alt me-1 text-secondary opacity-75"></i>${track.artista}
+                        </p>
+                    </div>
+                    <div class="ms-2 play-icon-wrapper text-info px-2">
+                        <i class="fas fa-play fa-sm"></i>
+                    </div>
+                `;
+                topTracksContainer.appendChild(trackRow);
+            });
+
+        } catch (error) {
+            console.error("Error Top Tracks:", error);
+            topTracksSection.style.display = 'none';
+        }
+    }
+
+    // Asegúrate de inicializar la función al cargar la pestaña
+    fetchTopTracks();
 });

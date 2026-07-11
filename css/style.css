@@ -724,7 +724,7 @@ body.tech-theme {
     transform: rotateY(180deg) !important;
 }
 
-/* --- Tarjetas de Música --- */
+/* --- Widget de Música --- */
 .cyber-spotify-card {
     background: rgba(10, 10, 12, 0.9);
     border: 1px solid rgba(13, 202, 240, 0.25);
@@ -779,6 +779,69 @@ body.tech-theme {
     background-color: #1DB954 !important;
     color: #000 !important;
     box-shadow: 0 0 12px #1DB954;
+}
+
+/* --- Top Track List ---*/
+.cyber-top-track {
+    background: rgba(10, 10, 12, 0.4);
+    border: 1px solid rgba(13, 202, 240, 0.05);
+    border-left: 4px solid rgba(255, 255, 255, 0.05); 
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+    /* Optimización: aislar el renderizado gráfico de la fila */
+    contain: paint; 
+}
+
+.top-track-img {
+    width: 44px;
+    height: 44px;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.track-title {
+    font-size: 0.95rem;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    -webkit-font-smoothing: antialiased;
+}
+
+.play-icon-wrapper i {
+    opacity: 0.3;
+    transition: all 0.3s ease;
+}
+
+/* --- Interacción del Usuario (Hover) --- */
+.cyber-top-track:hover {
+    background: rgba(10, 10, 12, 0.85);
+    border-color: rgba(13, 202, 240, 0.2);
+    border-left: 4px solid var(--primary-color); 
+    box-shadow: -8px 0 15px -5px rgba(13, 202, 240, 0.4), inset 0 0 15px rgba(13, 202, 240, 0.03);
+    /* Desplazamiento lateral fluido */
+    transform: translateX(4px); 
+}
+
+/* El título se enciende en cian nítido */
+.cyber-top-track:hover .track-title {
+    color: var(--primary-color) !important; 
+    text-shadow: 0 0 4px rgba(13, 202, 240, 0.4);
+}
+
+/* La miniatura se enmarca en luz cian */
+.cyber-top-track:hover .top-track-img {
+    border-color: #fff !important;
+    box-shadow: 0 0 10px rgba(13, 202, 240, 0.4);
+}
+
+/* El indicador de acción se enciende */
+.cyber-top-track:hover .play-icon-wrapper i {
+    opacity: 1;
+    text-shadow: 0 0 6px var(--primary-color);
+}
+
+.track-number {
+    font-size: 0.85rem;
 }
 
 .avatar-neon {
