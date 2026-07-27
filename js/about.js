@@ -299,7 +299,7 @@ document.addEventListener("DOMContentLoaded", function () {
             col.innerHTML = `
                 <div class="cyber-travel-card h-100">
                     <div class="travel-img-wrapper">
-                        <img src="${coverImage}" class="travel-cover" alt="${viaje.nombre}">
+                        <img src="${coverImage}" class="travel-cover" alt="${viaje.nombre}" loading="lazy">
                         ${heartIcon}
                     </div>
                     <div class="card-body p-4 d-flex flex-column">
