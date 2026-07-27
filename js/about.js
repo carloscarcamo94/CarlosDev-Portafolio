@@ -255,6 +255,23 @@ document.addEventListener("DOMContentLoaded", function () {
     const wantToGoContainer = document.getElementById("want-to-go-container");
     const visitedContainer = document.getElementById("visited-container");
 
+    // Optimización de las imágenes para mejorar la carga y el rendimiento
+    function optimizeImageUrl(originalUrl) {
+        if (!originalUrl.includes('images.unsplash.com')) {
+            return originalUrl;
+        }
+        try {
+            const url = new URL(originalUrl);
+            url.searchParams.set('w', '600');
+            url.searchParams.set('q', '80');
+            url.searchParams.set('auto', 'format');
+            return url.toString();
+        } catch (e) {
+            console.error("Error optimizando URL:", e);
+            return originalUrl;
+        }
+    }
+
     async function fetchViajes() {
         if (!travelSpinner) return; // Por si no estamos en la pestaña correcta
         
@@ -292,14 +309,14 @@ document.addEventListener("DOMContentLoaded", function () {
             const col = document.createElement("div");
             col.className = "col-lg-4 col-md-6"; // 3 tarjetas por fila en PC
             
-            const coverImage = viaje.portadaUrl ? viaje.portadaUrl : 'assets/logos/carlosdev-icon.svg';
+            const coverImage = viaje.portadaUrl ? optimizeImageUrl(viaje.portadaUrl) : 'assets/logos/carlosdev-icon.svg';
             const heartIcon = viaje.favorito ? `<i class="fas fa-heart cyber-heart-icon" title="Destino Favorito"></i>` : '';
             const bookedIcon = viaje.reservado ? `<span class="badge bg-success bg-opacity-25 text-success border border-success mt-2"><i class="fas fa-ticket-alt me-1"></i>Vuelo Reservado</span>` : '';
 
             col.innerHTML = `
                 <div class="cyber-travel-card h-100">
                     <div class="travel-img-wrapper">
-                        <img src="${coverImage}" class="travel-cover" alt="${viaje.nombre}" loading="lazy">
+                        <img src="${coverImage}" class="travel-cover" alt="${viaje.nombre}">
                         ${heartIcon}
                     </div>
                     <div class="card-body p-4 d-flex flex-column">
@@ -366,7 +383,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Render de la nota musical animada si suena en vivo
             const equalizerHtml = isLive ? 
                 '<i class="fas fa-music animated-note"></i>' : 
-                '<i class="fas fa-moon text-light-gray fs-5"></i>';
+                '<i class="fas fa-headphones-alt text-light-gray fs-5"></i>';
 
             spotifyContainer.innerHTML = `
                 <div class="cyber-spotify-card shadow-lg">
@@ -383,7 +400,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <div class="flex-grow-1" style="min-width: 0;">
                             <h4 class="text-white fw-bold text-truncate mb-1 font-monospace" title="${track.titulo}">${track.titulo}</h4>
                             <p class="text-info fw-medium text-truncate mb-2 small" title="${track.autor}">
-                                <i class="fas fa-music me-1 text-opacity-50"></i> ${track.autor}
+                                <i class="fas fa-microphone-alt me-1 text-opacity-50"></i> ${track.autor}
                             </p>
                             <p class="text-light-gray text-truncate mb-3 small font-monospace" style="font-size: 0.85rem;">
                                 <i class="fas fa-compact-disc me-1"></i> ${track.album}
@@ -448,7 +465,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div class="track-number font-monospace me-2 text-center text-light-gray fw-bold" style="width: 20px;">
                         ${index + 1}
                     </div>
-                    <img src="${track.portadaUrl}" class="top-track-img rounded me-3" alt="Portada de ${track.titulo}" loading="lazy">
+                    <img src="${track.portadaUrl}" class="top-track-img rounded me-3" alt="Portada de ${track.titulo}">
                     <div class="flex-grow-1 overflow-hidden" style="min-width: 0;">
                         <h6 class="track-title text-white font-monospace mb-1 text-truncate">${track.titulo}</h6>
                         <p class="text-light-gray small mb-0 text-truncate">
