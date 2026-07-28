@@ -1,21 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    
-    // --- Lógica de Smart Navbar (Ocultar al bajar, mostrar al subir) ---
-    // const navbar = document.getElementById('main-navbar');
-    // let lastScrollTop = 0;
-
-    // window.addEventListener('scroll', function() {
-    //     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // Si el usuario hace scroll hacia abajo y ha pasado los primeros 100px
-    //     if (scrollTop > lastScrollTop && scrollTop > 100) {
-    //         navbar.style.transform = 'translateY(-100%)'; // Oculta la barra hacia arriba
-    //     } else {
-    //         navbar.style.transform = 'translateY(0)'; // Muestra la barra al subir
-    //     }
-        
-    //     lastScrollTop = scrollTop;
-    // });
 
 // --- Lógica del Datapad ---
     const datapadCarousel = document.getElementById('datapadCarousel');
@@ -49,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     clearInterval(interval);
                     element.innerText = targetText; // Seguro final
                 }
-                iterations += 1; // Ajusta este número para que se descifre más rápido o más lento
+                iterations += 1; // Ajustamos este número para que se descifre más rápido o más lento
             }, 35); 
         };
 
@@ -244,7 +227,7 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
     }
 
-    // Iniciar la petición
+    // Iniciamos la petición para obtener los libros
     fetchLibros();
 
     // URL de la API de viajes en producción
@@ -351,7 +334,7 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
     }
 
-    // Iniciar carga de viajes
+    // Iniciamos la carga de viajes
     fetchViajes();
 
     // URL de la API de Spotify en producción
@@ -431,10 +414,12 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
     }
 
-    // Inicializar carga del componente
+    // Inicializamos la carga del componente
     fetchSpotify();
 
+     // URL de la API de Spotify para extraer el top de canciones en producción
     const topTracksApiUrl = "https://api-contactform.onrender.com/api/spotify/top-tracks";
+     // Capturamos los nuevos contenedores del HTML
     const topTracksSection = document.getElementById("top-tracks-section");
     const topTracksContainer = document.getElementById("top-tracks-container");
 
@@ -485,6 +470,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Asegúrate de inicializar la función al cargar la pestaña
+    // Inicializamos la función para obtener el top de Spotify
     fetchTopTracks();
 });
