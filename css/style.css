@@ -892,7 +892,7 @@ body.tech-theme {
 
 /* HUD del usuario */
 #steam-hud-container .card {
-    border-left: 4px solid #0dcaf0 !important;
+    border-left: 4px solid rgba(13, 202, 240, 0.8) !important;
 }
 
 /* Efecto Avatar Offline */
@@ -925,9 +925,8 @@ body.tech-theme {
 }
 
 .btn-steam-profile:hover {
-    /* El borde se ilumina blanco/claro primero y el fondo se llena de cyan */
     border-color: #40dfff;
-    box-shadow: 0 0 10px rgba(13, 202, 240, 0.9);
+    box-shadow: 0 0 10px rgba(13, 202, 240, 0.8);
     background-color: #0dcaf0;
     color: #000000;
 }
@@ -935,6 +934,21 @@ body.tech-theme {
 /* Transición suave para las barras de progreso de los logros */
 #steam-achievements-container .progress-bar {
     transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efecto de retroiluminación para la portada del juego */
+.steam-playing-cover {
+    transition: all 0.3s ease-in-out;
+    border-radius: 6px;
+    box-shadow: 0 0 5px rgba(25, 135, 84, 0.2); /* Sutil sombra base */
+}
+
+.steam-playing-cover:hover {
+    transform: translateY(-3px); /* Se eleva un poco */
+    /* Múltiples capas de sombra para crear el efecto "Glow" neón verde/cyan */
+    box-shadow: 0 0 10px rgba(13, 202, 240, 0.6), 
+                0 0 20px rgba(25, 135, 84, 0.6); 
+    border-color: #0dcaf0 !important; /* El borde cambia a cyan al hacer hover */
 }
 
 /* --- Interacción del Usuario (Hover) --- */

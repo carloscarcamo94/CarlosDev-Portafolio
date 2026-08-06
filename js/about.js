@@ -397,23 +397,32 @@ document.addEventListener("DOMContentLoaded", function () {
             container.style.display = 'block';
 
             const isPlaying = status.status === "In-Game";
-            // Si está jugando, el texto principal sigue siendo "Online"
             const isOnline = status.status === "Online" || isPlaying; 
-            
             // Colores e iconos dinámicos
             const statusColor = isOnline ? "text-info" : "text-secondary";
             const avatarGlowClass = isOnline ? "steam-avatar-online" : "steam-avatar-offline";
             const statusIcon = isPlaying ? "fa-gamepad fa-beat" : "fa-signal";
             
+            // Determinamos el texto a mostrar
+            let statusText = isOnline ? "Online" : "Offline";
+            if (isPlaying) {
+                statusText = "Playing";
+            }
+            
             let gameHtml = '';
             let profileUrl = status.profileUrl ? status.profileUrl : `https://steamcommunity.com/search/users/#text=${status.username}`;
 
-            // Rediseño de la caja del juego actual
-            if (isPlaying && status.currentGame) {
+            if (isPlaying && status.playingGameId && status.playingGameName) {
                 gameHtml = `
-                    <div class="mt-2 px-3 py-2 bg-dark bg-opacity-50 rounded border border-success d-inline-block">
-                        <p class="text-success small fw-bold font-monospace mb-0"><i class="fas fa-play me-2"></i>${status.currentGame}</p>
-                    </div>
+                    <a href="https://store.steampowered.com/app/${status.playingGameId}/" target="_blank" class="d-inline-block mt-2 text-decoration-none">
+                        <!-- Usamos la imagen de ALTA definición y dejamos que el CSS la escale hacia abajo -->
+                        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/${status.playingGameId}/capsule_616x353.jpg" 
+                            onerror="this.onerror=null; this.src='https://cdn.cloudflare.steamstatic.com/steam/apps/${status.playingGameId}/header.jpg';" 
+                            alt="${status.playingGameName}" 
+                            title="Jugando: ${status.playingGameName}"
+                            class="steam-playing-cover border border-success border-opacity-75" 
+                            style="height: 65px; width: auto; aspect-ratio: 616 / 353; object-fit: cover;">
+                    </a>
                 `;
             }
 
@@ -431,7 +440,8 @@ document.addEventListener("DOMContentLoaded", function () {
                                 <h4 class="text-white font-monospace mb-1 fw-bold">${status.username}</h4>
                                 <div class="d-flex align-items-center justify-content-center justify-content-sm-start ${statusColor} font-monospace small mb-1" style="gap: 6px;">
                                     <i class="fas ${statusIcon}" style="transform: translateY(-1px);"></i>
-                                    <span style="line-height: 1;">${isOnline ? "Online" : "Offline"}</span>
+                                    <!-- Aquí aplicamos la variable del texto dinámico -->
+                                    <span style="line-height: 1;">${statusText}</span>
                                 </div>
                                 ${gameHtml}
                             </div>
