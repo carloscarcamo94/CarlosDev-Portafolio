@@ -1,3 +1,8 @@
+// ==========================================
+// Archivo: js/sports.js
+// Capa de Servicios: Datos Locales
+// ==========================================
+
 document.addEventListener("DOMContentLoaded", function () {
     
     const deportesContainer = document.getElementById("deportes-container");

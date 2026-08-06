@@ -863,6 +863,108 @@ body.tech-theme {
     font-size: 0.9rem;
 }
 
+/* --- Tarjetas de Videojuegos --- */
+
+/* Efecto de tarjetas */
+#videojuegos .card, 
+#steam-achievements-container .bg-black {
+    transition: all 0.3s ease-in-out;
+    background: linear-gradient(145deg, #050505, #121212) !important;
+    border: 1px solid rgba(13, 202, 240, 0.15) !important;
+    border-radius: 6px;
+}
+
+/* Efecto Hover: Brillo neón al pasar el mouse */
+#videojuegos .card:hover, 
+#steam-achievements-container .bg-black:hover {
+    transform: translateY(-4px);
+    border-color: rgba(13, 202, 240, 0.8) !important;
+    box-shadow: 0 5px 15px rgba(13, 202, 240, 0.2), inset 0 0 15px rgba(13, 202, 240, 0.05);
+}
+
+/* Etiqueta de posición (#1, #2, etc.) */
+#videojuegos .bg-warning {
+    background-color: #ffc107 !important;
+    box-shadow: 2px 2px 10px rgba(255, 193, 7, 0.4);
+    border-bottom-right-radius: 8px;
+    letter-spacing: 1px;
+}
+
+/* HUD del usuario */
+#steam-hud-container .card {
+    border-left: 4px solid #0dcaf0 !important;
+}
+
+/* Efecto Avatar Offline */
+.steam-avatar-offline {
+    border-color: #6c757d !important;
+    box-shadow: 0 0 10px rgba(108, 117, 125, 0.4);
+    transition: box-shadow 0.3s ease-in-out;
+}
+.steam-avatar-offline:hover {
+    border-color: #cbd7e2 !important;
+    box-shadow: 0 0 13px rgba(108, 117, 125, 0.9);
+}
+
+/* Efecto Avatar Online */
+.steam-avatar-online {
+    border-color: #0dcaf0 !important;
+    box-shadow: 0 0 10px rgba(13, 202, 240, 0.4);
+    transition: box-shadow 0.3s ease-in-out;
+}
+.steam-avatar-online:hover {
+    box-shadow: 0 0 12px rgba(13, 202, 240, 0.9);
+}
+
+/* Efecto Botón "Ver Perfil" */
+.btn-steam-profile {
+    border: 1px solid #0dcaf0;
+    color: #0dcaf0;
+    background-color: transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-steam-profile:hover {
+    /* El borde se ilumina blanco/claro primero y el fondo se llena de cyan */
+    border-color: #40dfff;
+    box-shadow: 0 0 10px rgba(13, 202, 240, 0.9);
+    background-color: #0dcaf0;
+    color: #000000;
+}
+
+/* Transición suave para las barras de progreso de los logros */
+#steam-achievements-container .progress-bar {
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Interacción del Usuario (Hover) --- */
+.cyber-top-track:hover {
+    background: rgba(10, 10, 12, 0.85);
+    border-color: rgba(13, 202, 240, 0.2);
+    border-left: 4px solid var(--primary-color); 
+    box-shadow: -8px 0 15px -5px rgba(13, 202, 240, 0.4), inset 0 0 15px rgba(13, 202, 240, 0.03);
+    /* Desplazamiento lateral fluido */
+    transform: translateX(4px); 
+}
+
+/* El título se enciende en cian nítido */
+.cyber-top-track:hover .track-title {
+    color: var(--primary-color) !important; 
+    text-shadow: 0 0 4px rgba(13, 202, 240, 0.4);
+}
+
+/* La miniatura se enmarca en luz cian */
+.cyber-top-track:hover .top-track-img {
+    border-color: #fff !important;
+    box-shadow: 0 0 10px rgba(13, 202, 240, 0.4);
+}
+
+/* El indicador de acción se enciende */
+.cyber-top-track:hover .play-icon-wrapper i {
+    opacity: 1;
+    text-shadow: 0 0 6px var(--primary-color);
+}
+
 .avatar-neon {
     color: #00f3ff;
 }
