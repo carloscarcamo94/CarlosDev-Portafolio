@@ -891,9 +891,6 @@ body.tech-theme {
 }
 
 /* HUD del usuario */
-#steam-hud-container .card {
-    border-left: 4px solid rgba(13, 202, 240, 0.8) !important;
-}
 
 /* Efecto Avatar Offline */
 .steam-avatar-offline {

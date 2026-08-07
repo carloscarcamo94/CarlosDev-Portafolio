@@ -398,60 +398,70 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const isPlaying = status.status === "In-Game";
             const isOnline = status.status === "Online" || isPlaying; 
-            // Colores e iconos dinámicos
-            const statusColor = isOnline ? "text-info" : "text-secondary";
-            const avatarGlowClass = isOnline ? "steam-avatar-online" : "steam-avatar-offline";
-            const statusIcon = isPlaying ? "fa-gamepad fa-beat" : "fa-signal";
             
-            // Determinamos el texto a mostrar
+            // Determinamos el "Estado" a mostrar
             let statusText = isOnline ? "Online" : "Offline";
             if (isPlaying) {
                 statusText = "Playing";
             }
+            
+            // Color dinámico para la Top Bar (Cyan si es online/playing, Gris si es offline)
+            const topBarColorClass = isOnline ? "text-info" : "text-light-gray"; 
+            
+            // Iconos dinámicos (Gamepad animado si juega, Señal estática si no se encuentra en juego)
+            const statusIcon = isPlaying ? "fa-gamepad fa-beat" : "fa-signal";
+            const avatarGlowClass = isOnline ? "steam-avatar-online" : "steam-avatar-offline";
             
             let gameHtml = '';
             let profileUrl = status.profileUrl ? status.profileUrl : `https://steamcommunity.com/search/users/#text=${status.username}`;
 
             if (isPlaying && status.playingGameId && status.playingGameName) {
                 gameHtml = `
-                    <a href="https://store.steampowered.com/app/${status.playingGameId}/" target="_blank" class="d-inline-block mt-2 text-decoration-none">
-                        <!-- Usamos la imagen de ALTA definición y dejamos que el CSS la escale hacia abajo -->
+                    <a href="https://store.steampowered.com/app/${status.playingGameId}/" target="_blank" class="text-decoration-none d-inline-block mt-4 mt-sm-0 ms-sm-4">
                         <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/${status.playingGameId}/capsule_616x353.jpg" 
                             onerror="this.onerror=null; this.src='https://cdn.cloudflare.steamstatic.com/steam/apps/${status.playingGameId}/header.jpg';" 
                             alt="${status.playingGameName}" 
                             title="Jugando: ${status.playingGameName}"
-                            class="steam-playing-cover border border-success border-opacity-75" 
-                            style="height: 65px; width: auto; aspect-ratio: 616 / 353; object-fit: cover;">
+                            class="steam-playing-cover border border-secondary border-opacity-50" 
+                            style="height: 75px; width: auto; aspect-ratio: 616 / 353; object-fit: cover;">
                     </a>
                 `;
             }
 
             container.innerHTML = `
-                <div class="card bg-black border border-info border-opacity-25 shadow-lg p-4 group-hover-border mx-auto" style="max-width: 600px; transition: all 0.3s ease;">
-                    <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between gap-4 text-center text-sm-start">
+                <div class="card bg-black border border-info border-opacity-25 shadow-lg mx-auto overflow-hidden" style="max-width: 650px; transition: all 0.3s ease; border-radius: 12px;">
+                    
+                    <div class="d-flex justify-content-between align-items-center px-3 py-2 border-bottom border-secondary border-opacity-25" style="background-color: rgba(33, 37, 41, 0.6);">
+
+                        <div class="${topBarColorClass} font-monospace small fw-bold d-flex align-items-center" style="transition: color 0.3s ease;">
+                            <i class="fab fa-steam fs-6 me-2"></i> Estado
+                        </div>
+                        
+                        <div class="${topBarColorClass} font-monospace small d-flex align-items-center fw-bold" style="gap: 8px; transition: color 0.3s ease;">
+                            <span>${statusText}</span>
+                            <i class="fas ${statusIcon}"></i>
+                        </div>
+                    </div>
+
+                    <div class="p-4 d-flex flex-column flex-sm-row align-items-center justify-content-between text-center text-sm-start">
                         
                         <div class="d-flex flex-column flex-sm-row align-items-center gap-4">
-                            <div class="position-relative">
+                            <div class="position-relative flex-shrink-0">
                                 <img src="${status.avatarUrl}" class="rounded border border-2 ${avatarGlowClass}" alt="Steam Avatar" style="width: 100px; height: 100px; object-fit: cover;">
                             </div>
                             
-                            <!-- Info del Usuario -->
-                            <div>
-                                <h4 class="text-white font-monospace mb-1 fw-bold">${status.username}</h4>
-                                <div class="d-flex align-items-center justify-content-center justify-content-sm-start ${statusColor} font-monospace small mb-1" style="gap: 6px;">
-                                    <i class="fas ${statusIcon}" style="transform: translateY(-1px);"></i>
-                                    <!-- Aquí aplicamos la variable del texto dinámico -->
-                                    <span style="line-height: 1;">${statusText}</span>
+                            <div class="d-flex flex-column justify-content-center pt-1">
+                                <h4 class="text-white font-monospace mb-3 fw-bold">${status.username}</h4>
+                                <div>
+                                    <a href="${profileUrl}" target="_blank" class="btn btn-steam-profile font-monospace rounded-pill px-4" style="height: 38px; display: inline-flex; align-items: center; justify-content: center;">
+                                        <i class="fab fa-steam me-2"></i>Ver Perfil
+                                    </a>
                                 </div>
-                                ${gameHtml}
                             </div>
                         </div>
-                        
-                        <div class="mt-3 mt-sm-0">
-                            <a href="${profileUrl}" target="_blank" class="btn btn-steam-profile font-monospace rounded-pill px-4 py-2">
-                                <i class="fab fa-steam me-2"></i>Ver Perfil
-                            </a>
-                        </div>
+
+                        <!-- BLOQUE DERECHO: Portada del juego en tamaño grande -->
+                        ${gameHtml}
                         
                     </div>
                 </div>
