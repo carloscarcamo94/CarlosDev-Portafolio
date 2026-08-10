@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             let ratingHtml = '';
             if (isFinished && libro.rating) {
-                ratingHtml = `<div class="mt-1 text-warning" style="letter-spacing: 2px;">${libro.rating}</div>`;
+                ratingHtml = `<div class="text-warning mt-1" style="letter-spacing: 2px;">${libro.rating}</div>`;
             }
 
             col.innerHTML = `
@@ -159,18 +159,22 @@ document.addEventListener("DOMContentLoaded", function () {
                                 <h4 class="card-title text-${themeClass} fw-bold mb-2">${libro.titulo || 'Sin título'}</h4>
                                 <p class="card-text mb-2 text-${themeClass} fw-medium"><i class="fas fa-pen-nib me-2"></i>${libro.autor || 'Desconocido'}</p>
                                 <p class="card-text mb-3"><span class="badge bg-dark border border-secondary text-light">${libro.genero || 'General'}</span></p>
+                                
                                 <div class="mt-auto">
                                     <div class="progress bg-dark border border-${themeClass} border-opacity-25" style="height: 6px;">
                                         <div class="progress-bar bg-${themeClass}" role="progressbar" style="width: ${progressValue}%; box-shadow: 0 0 5px ${shadowColor};"></div>
                                     </div>
-                                    <div class="d-flex justify-content-between align-items-end mt-2">
+                                    
+                                    <div class="d-flex justify-content-between align-items-center mt-2">
                                         <div>
-                                            ${isFinished ? `<span class="badge bg-success bg-opacity-10 text-success border border-success rounded-pill mb-1"><i class="fas fa-check-circle me-1"></i>Finished</span>` : ''}
-                                            ${ratingHtml}
+                                            ${isFinished ? `<span class="badge bg-success bg-opacity-10 text-success border border-success rounded-pill"><i class="fas fa-check-circle me-1"></i>Finished</span>` : ''}
                                         </div>
-                                        <small class="font-monospace text-${themeClass} fw-bold">${progressValue}% completado</small>
+                                        <small class="font-monospace text-${themeClass} fw-bold flex-shrink-0">${progressValue}%${!isFinished ? ' completado' : ''}</small>
                                     </div>
+                                    
+                                    ${ratingHtml}
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -579,17 +583,22 @@ document.addEventListener("DOMContentLoaded", function () {
                 col.innerHTML = `
                     <div class="d-flex align-items-center bg-black border border-${themeClass} border-opacity-25 p-2 rounded">
                         <img src="${game.bannerUrl}" class="rounded me-3" alt="${game.gameName}" style="width: 120px; height: 56px; object-fit: cover;">
-                        <div class="flex-grow-1">
-                            <div class="d-flex justify-content-between align-items-center mb-1">
-                                <span class="text-white font-monospace small text-truncate" style="max-width: 150px;">${game.gameName}</span>
-                                <span class="text-${themeClass} font-monospace fw-bold small">${percentage}%</span>
+                        
+                        <div class="flex-grow-1" style="min-width: 0;">
+                            
+                            <div class="d-flex justify-content-between align-items-center gap-2 mb-1">
+                                <div class="text-white font-monospace small text-truncate" style="min-width: 0;" title="${game.gameName}">${game.gameName}</div>
+                                <span class="text-${themeClass} font-monospace fw-bold small flex-shrink-0">${percentage}%</span>
                             </div>
+                            
                             <div class="progress bg-dark" style="height: 6px;">
                                 <div class="progress-bar bg-${themeClass}" role="progressbar" style="width: ${percentage}%; box-shadow: 0 0 5px var(--bs-${themeClass});"></div>
                             </div>
+                            
                             <div class="text-end mt-1">
                                 <span class="text-light-gray font-monospace" style="font-size: 0.7rem;">${game.unlockedAchievements} / ${game.totalAchievements} Unlocked</span>
                             </div>
+                            
                         </div>
                     </div>
                 `;
