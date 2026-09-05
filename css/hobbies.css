@@ -1,0 +1,534 @@
+/* =======================================
+ * Archivo: css/hobbies.css
+ * Descripción: Estilos de las subsecciones
+ * dinámicas de Hobbies en about.html.
+ * Cada sección se renderiza según la
+ * pestaña activa seleccionada por el usuario.
+ * Secciones: Libros, Viajes, Deportes,
+ * Música y Videojuegos.
+ * ======================================= */
+
+/* ------------------------------------------
+ * Hobbies — Tarjetas de Libros
+ * ------------------------------------------ */
+.cyber-card {
+    position: relative;
+    background-color: #050505;
+    border: 1px solid var(--primary-color) !important;
+    box-shadow: 0 0 10px rgba(13, 202, 240, 0.2), inset 0 0 10px rgba(13, 202, 240, 0.1);
+    overflow: hidden;
+    /* Mantiene el láser dentro de los bordes */
+    transition: all 0.3s ease;
+    cursor: crosshair;
+    border-radius: 8px;
+}
+
+/* Efecto al pasar el cursor (Pulso de energía) */
+.cyber-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(13, 202, 240, 0.5), inset 0 0 15px rgba(13, 202, 240, 0.2);
+    border-color: #fff !important;
+}
+
+/* Línea de escaneo holográfica vertical */
+.cyber-card::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: rgba(13, 202, 240, 0.8);
+    box-shadow: 0 0 10px rgba(13, 202, 240, 0.8);
+    animation: hud-scan 4s linear infinite;
+    z-index: 10;
+    pointer-events: none;
+    /* Evita que el láser bloquee los clics en la tarjeta */
+    opacity: 0;
+}
+
+@keyframes hud-scan {
+    0% {
+        top: -10%;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.8;
+    }
+
+    90% {
+        opacity: 0.8;
+    }
+
+    100% {
+        top: 110%;
+        opacity: 0;
+    }
+}
+
+/* Ajustes para la portada del libro */
+.cyber-cover {
+    border: 1px solid rgba(13, 202, 240, 0.4);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+}
+
+/* ------------------------------------------
+ * Hobbies — Tarjetas de Viajes
+ * ------------------------------------------ */
+.cyber-travel-card {
+    background: rgba(10, 10, 15, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 3px solid var(--primary-color);
+    /* Línea de luz superior */
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(8px);
+}
+
+.cyber-travel-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(13, 202, 240, 0.2);
+    border-top: 3px solid var(--secundary-color);
+    /* Cambia a magenta en hover */
+}
+
+.travel-img-wrapper {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.travel-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.4s ease;
+}
+
+.travel-img-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35);
+    /* Oscurece un 35% */
+    transition: background 0.4s ease;
+    pointer-events: none;
+    /* Evita que la capa bloquee los clics */
+    z-index: 1;
+}
+
+.cyber-travel-card:hover .travel-img-wrapper::after {
+    background: rgba(0, 0, 0, 0);
+    /* Luz completa */
+}
+
+.cyber-heart-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.2rem;
+    color: #ff00ea;
+    /* Magenta brillante estático */
+    -webkit-text-stroke: 1px rgba(107, 0, 35, 0.4);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Efecto de rebote suave */
+    z-index: 10;
+}
+
+/* Efecto de iluminación al hacer hover sobre la tarjeta o el corazón */
+.cyber-travel-card:hover .cyber-heart-icon,
+.cyber-heart-icon:hover {
+    transform: scale(1.13);
+    /* Hacemos crecer el corazón */
+    color: #ff33ee;
+    /* Se vuelve ligeramente más claro al brillar */
+    -webkit-text-stroke: 1px rgba(107, 0, 35, 0.6);
+}
+
+/* ------------------------------------------
+ * Hobbies — Tarjetas de Deportes
+ * ------------------------------------------ */
+.cyber-sport-card {
+    background: linear-gradient(135deg, rgba(10, 10, 15, 0.8) 0%, rgba(5, 5, 5, 0.9) 100%);
+    border: 1px solid rgba(13, 202, 240, 0.2);
+    position: relative;
+    overflow: hidden;
+    /* Corte biselado sutil en la esquina superior izquierda */
+    clip-path: polygon(15px 0, 100% 0, 100% 100%, 0 100%, 0 15px);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    backdrop-filter: blur(4px);
+}
+
+/* Línea de escaneo decorativa lateral (HUD Accent) */
+.sport-hud-accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--primary-color);
+    box-shadow: 0 0 8px var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+/* Efectos en Hover */
+.cyber-sport-card:hover {
+    transform: scale(1.03);
+    border-color: rgba(240, 13, 202, 0.4);
+    /* Cambia el borde a magenta claro */
+    box-shadow: 0 0 20px rgba(240, 13, 202, 0.1), inset 0 0 15px rgba(13, 202, 240, 0.05);
+}
+
+.cyber-sport-card:hover .sport-hud-accent {
+    background: var(--secundary-color);
+    /* La barra cambia a magenta */
+    box-shadow: 0 0 12px var(--secundary-color);
+    width: 5px;
+}
+
+/* Resplandor sutil en los iconos deportivos */
+.sport-icon-glow {
+    filter: drop-shadow(0 0 4px currentColor);
+    transition: transform 0.3s ease;
+}
+
+.cyber-sport-card:hover .sport-icon-glow {
+    transform: rotate(10deg) scale(1.1);
+}
+
+/* Detalle de rejilla HUD de fondo para dar textura de monitor */
+.sport-card-body {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* ------------------------------------------
+ * Hobbies — Animación Flip (Deportes)
+ * ------------------------------------------ */
+.cyber-sport-scene {
+    perspective: 1000px;
+    /* Le da profundidad a la cámara 3D */
+    cursor: pointer;
+}
+
+.cyber-sport-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Efecto de rebote cyberpunk */
+    transform-style: preserve-3d;
+}
+
+/* Al hacer clic, se añade esta clase y gira */
+.cyber-sport-scene.flipped .cyber-sport-inner {
+    transform: rotateY(180deg);
+}
+
+.cyber-sport-front,
+.cyber-sport-back {
+    backface-visibility: hidden;
+    /* Oculta la parte trasera cuando no está de frente */
+    -webkit-backface-visibility: hidden;
+}
+
+.cyber-sport-front {
+    position: relative;
+    /* Define la altura de la tarjeta */
+    transform: rotateY(0deg) translateZ(1px);
+    z-index: 2;
+    -webkit-font-smoothing: antialiased;
+}
+
+.cyber-sport-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotateY(180deg);
+    /* Ya está volteada por defecto */
+    padding: 0 !important;
+    border-color: rgba(240, 13, 202, 0.5) !important;
+    /* Borde magenta para la parte trasera */
+}
+
+/* Estilo de la imagen y la etiqueta en la parte trasera */
+.cyber-sport-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+    mix-blend-mode: luminosity;
+    /* Le da un tono más metálico/cyberpunk a la foto */
+}
+
+.cyber-sport-scene:hover .cyber-sport-back img {
+    opacity: 0.9;
+    mix-blend-mode: normal;
+}
+
+.sport-back-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 60%, transparent 100%);
+    padding: 25px 15px 15px;
+    text-align: center;
+}
+
+/* Mantiene el crecimiento suave solo en la parte frontal */
+.cyber-sport-front.cyber-sport-card:hover {
+    transform: rotateY(0deg) scale(1.03) translateZ(1px) !important;
+}
+
+/* Anula el crecimiento en la parte trasera y fuerza a que se quede quieta a 180 grados */
+.cyber-sport-back.cyber-sport-card:hover {
+    transform: rotateY(180deg) !important;
+}
+
+/* ------------------------------------------
+ * Hobbies — Widget de Música (Spotify)
+ * ------------------------------------------ */
+.cyber-spotify-card {
+    background: rgba(10, 10, 12, 0.9);
+    border: 1px solid rgba(13, 202, 240, 0.25);
+    border-radius: 16px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(13, 202, 240, 0.05);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.spotify-status-bar {
+    background: linear-gradient(90deg, rgba(13, 202, 240, 0.15) 0%, transparent 100%);
+    border-bottom: 1px solid rgba(13, 202, 240, 0.2);
+}
+
+.spotify-album-cover {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+}
+
+/* Nota Musical Animada */
+.animated-note {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    display: inline-block;
+    /* Aplicamos la animación infinita */
+    animation: bass-drop 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite both;
+    filter: drop-shadow(0 0 5px var(--primary-color));
+}
+
+@keyframes bass-drop {
+    0% {
+        transform: scale(1) rotate(0deg);
+    }
+
+    20% {
+        transform: scale(1.25) rotate(-10deg);
+    }
+
+    40% {
+        transform: scale(0.9) rotate(10deg);
+    }
+
+    60% {
+        transform: scale(1.15) rotate(-5deg);
+    }
+
+    80% {
+        transform: scale(0.95) rotate(5deg);
+    }
+
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* Enlace a Spotify con brillo */
+.spotify-link-btn {
+    border: 1px solid #1DB954;
+    color: #1DB954;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.spotify-link-btn:hover {
+    background-color: #1DB954 !important;
+    color: #000 !important;
+    box-shadow: 0 0 12px #1DB954;
+}
+
+/* ------------------------------------------
+ * Hobbies — Top Track List (Spotify)
+ * ------------------------------------------ */
+.cyber-top-track {
+    background: rgba(10, 10, 12, 0.4);
+    border: 1px solid rgba(13, 202, 240, 0.05);
+    border-left: 4px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+    /* Optimización: aislar el renderizado gráfico de la fila */
+    contain: paint;
+}
+
+.top-track-img {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.track-title {
+    font-size: 0.95rem;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    -webkit-font-smoothing: antialiased;
+}
+
+.play-icon-wrapper i {
+    opacity: 0.3;
+    transition: all 0.3s ease;
+}
+
+.track-number {
+    width: 24px !important;
+    min-width: 24px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+/* Interacción del Usuario (Hover) */
+.cyber-top-track:hover {
+    background: rgba(10, 10, 12, 0.85);
+    border-color: rgba(13, 202, 240, 0.2);
+    border-left: 4px solid var(--primary-color);
+    box-shadow: -8px 0 15px -5px rgba(13, 202, 240, 0.4), inset 0 0 15px rgba(13, 202, 240, 0.03);
+    /* Desplazamiento lateral fluido */
+    transform: translateX(4px);
+}
+
+/* El título se enciende en cian nítido */
+.cyber-top-track:hover .track-title {
+    color: var(--primary-color) !important;
+    text-shadow: 0 0 4px rgba(13, 202, 240, 0.4);
+}
+
+/* La miniatura se enmarca en luz cian */
+.cyber-top-track:hover .top-track-img {
+    border-color: #fff !important;
+    box-shadow: 0 0 10px rgba(13, 202, 240, 0.4);
+}
+
+/* El indicador de acción se enciende */
+.cyber-top-track:hover .play-icon-wrapper i {
+    opacity: 1;
+    text-shadow: 0 0 6px var(--primary-color);
+}
+
+/* ------------------------------------------
+ * Hobbies — Tarjetas de Videojuegos (Steam)
+ * ------------------------------------------ */
+
+/* Efecto de tarjetas */
+#videojuegos .card,
+#steam-achievements-container .bg-black {
+    transition: all 0.3s ease-in-out;
+    background: linear-gradient(145deg, #050505, #121212) !important;
+    border: 1px solid rgba(13, 202, 240, 0.15) !important;
+    border-radius: 6px;
+}
+
+/* Efecto Hover: Brillo neón al pasar el mouse */
+#videojuegos .card:hover,
+#steam-achievements-container .bg-black:hover {
+    transform: translateY(-4px);
+    border-color: rgba(13, 202, 240, 0.8) !important;
+    box-shadow: 0 5px 15px rgba(13, 202, 240, 0.2), inset 0 0 15px rgba(13, 202, 240, 0.05);
+}
+
+/* Etiqueta de posición (#1, #2, etc.) */
+#videojuegos .bg-warning {
+    background-color: #ffc107 !important;
+    box-shadow: 2px 2px 10px rgba(255, 193, 7, 0.4);
+    border-bottom-right-radius: 8px;
+    letter-spacing: 1px;
+}
+
+/* HUD del usuario — Efecto Avatar Offline */
+.steam-avatar-offline {
+    border-color: #6c757d !important;
+    box-shadow: 0 0 10px rgba(108, 117, 125, 0.4);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.steam-avatar-offline:hover {
+    border-color: #cbd7e2 !important;
+    box-shadow: 0 0 13px rgba(108, 117, 125, 0.9);
+}
+
+/* HUD del usuario — Efecto Avatar Online */
+.steam-avatar-online {
+    border-color: #0dcaf0 !important;
+    box-shadow: 0 0 10px rgba(13, 202, 240, 0.4);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.steam-avatar-online:hover {
+    box-shadow: 0 0 12px rgba(13, 202, 240, 0.9);
+}
+
+/* Efecto Botón "Ver Perfil" */
+.btn-steam-profile {
+    border: 1px solid #0dcaf0;
+    color: #0dcaf0;
+    background-color: transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-steam-profile:hover {
+    border-color: #40dfff;
+    box-shadow: 0 0 10px rgba(13, 202, 240, 0.8);
+    background-color: #0dcaf0;
+    color: #000000;
+}
+
+/* Transición suave para las barras de progreso de los logros */
+#steam-achievements-container .progress-bar {
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efecto de retroiluminación para la portada del juego activo */
+.steam-playing-cover {
+    transition: all 0.3s ease-in-out;
+    border-radius: 6px;
+    box-shadow: 0 0 5px rgba(25, 135, 84, 0.2);
+    /* Sutil sombra base */
+}
+
+.steam-playing-cover:hover {
+    transform: translateY(-3px);
+    /* Se eleva un poco */
+    /* Múltiples capas de sombra para crear el efecto "Glow" neón verde/cyan */
+    box-shadow: 0 0 10px rgba(13, 202, 240, 0.6),
+        0 0 20px rgba(25, 135, 84, 0.6);
+    border-color: #0dcaf0 !important;
+    /* El borde cambia a cyan al hacer hover */
+}

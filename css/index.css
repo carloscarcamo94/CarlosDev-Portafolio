@@ -1,0 +1,430 @@
+/* =======================================
+ * Archivo: css/index.css
+ * Descripción: Estilos exclusivos de la
+ * página principal (index.html).
+ * Secciones: Hero, Experiencia, Skills,
+ * Contacto y Footer.
+ * ======================================= */
+
+/* ------------------------------------------
+ * Hero Section — Fondo Animado de Circuito
+ * ------------------------------------------ */
+.hero-section {
+    min-height: 100vh;
+    background-color: var(--bg-black);
+
+    /* Capa 1: Nodos (puntos), Capa 2: Pistas horizontales, Capa 3: Pistas verticales */
+    background-image:
+        radial-gradient(circle, rgba(13, 202, 240, 0.5) 2px, transparent 2.5px),
+        linear-gradient(rgba(13, 202, 240, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(13, 202, 240, 0.08) 1px, transparent 1px);
+
+    background-size: 50px 50px;
+    background-position: 0 0, 0 0, 0 0;
+
+    /* Animación infinita que mueve el circuito diagonalmente */
+    animation: circuitScroll 20s linear infinite;
+    position: relative;
+}
+
+/* Efecto de viñeta: oscurece los bordes para dar profundidad y resaltar el texto */
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, transparent 10%, var(--bg-black) 90%);
+    pointer-events: none;
+    /* Importante para no bloquear el clic en tus botones */
+    z-index: 1;
+}
+
+/* Elevamos el texto y botones por encima del efecto oscuro */
+.hero-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Animación del fondo de circuito */
+@keyframes circuitScroll {
+    0% {
+        background-position: 0 0, 0 0, 0 0;
+    }
+
+    /* Mueve la cuadrícula exactamente un "bloque" (50px) para que el loop sea invisible */
+    100% {
+        background-position: 50px 50px, 50px 50px, 50px 50px;
+    }
+}
+
+/* ------------------------------------------
+ * Hero Section — Cursor Typewriter
+ * ------------------------------------------ */
+.cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1.2em;
+    background-color: white;
+    vertical-align: middle;
+    animation: blink 0.75s step-end infinite;
+    margin-left: 2px;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* ------------------------------------------
+ * Sección Experiencia — Tarjetas
+ * ------------------------------------------ */
+.experience-card {
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.experience-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(13, 202, 240, 0.2) !important;
+}
+
+/* Flecha de colapso (acordeón de experiencia) */
+[data-bs-toggle="collapse"] .transition-icon {
+    transition: transform 0.3s ease;
+}
+
+/* Estado cerrado: flecha hacia abajo (0 grados) */
+[data-bs-toggle="collapse"][aria-expanded="false"] .transition-icon {
+    transform: rotate(0deg);
+}
+
+/* Estado abierto: flecha hacia arriba (180 grados) */
+[data-bs-toggle="collapse"][aria-expanded="true"] .transition-icon {
+    transform: rotate(180deg);
+}
+
+/* ------------------------------------------
+ * Sección Skills — Grid de Habilidades
+ * ------------------------------------------ */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    justify-content: center;
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    text-decoration: none;
+    padding: 30px;
+    border-radius: 8px;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.skill-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 5px 20px rgba(13, 202, 240, 0.3) !important;
+    background-color: var(--bg-black);
+    color: var(--primary-color);
+}
+
+.skill-item i {
+    transition: transform 0.3s ease;
+}
+
+.skill-item:hover i {
+    transform: scale(1.1);
+}
+
+.skill-name {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+/* ------------------------------------------
+ * Sección Skills — Crosshairs (Miras)
+ * ------------------------------------------ */
+.crosshair {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    pointer-events: none;
+    transition: transform 0.3s ease;
+}
+
+.crosshair::before,
+.crosshair::after {
+    content: "";
+    position: absolute;
+    background-color: var(--text-muted);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.top-left {
+    top: 10px;
+    left: 10px;
+    transform-origin: top left;
+}
+
+.top-right {
+    top: 10px;
+    right: 10px;
+    transform-origin: top right;
+}
+
+.bottom-left {
+    bottom: 10px;
+    left: 10px;
+    transform-origin: bottom left;
+}
+
+.bottom-right {
+    bottom: 10px;
+    right: 10px;
+    transform-origin: bottom right;
+}
+
+.top-left::before {
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 100%;
+}
+
+.top-left::after {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+}
+
+.top-right::before {
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+}
+
+.top-right::after {
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 1px;
+}
+
+.bottom-left::before {
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    height: 100%;
+}
+
+.bottom-left::after {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+}
+
+.bottom-right::before {
+    bottom: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+}
+
+.bottom-right::after {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 1px;
+}
+
+.skill-item:hover .crosshair {
+    transform: scale(1.35);
+}
+
+.skill-item:hover .crosshair::before,
+.skill-item:hover .crosshair::after {
+    background-color: var(--primary-color);
+    box-shadow: 0 0 8px var(--primary-color), 0 0 14px rgba(13, 202, 240, 0.7);
+}
+
+/* ------------------------------------------
+ * Sección Contacto — Tarjeta y Formulario
+ * ------------------------------------------ */
+.contact-card {
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+    box-shadow: 0 10px 30px rgba(13, 202, 240, 0.1) !important;
+}
+
+.form-control-dark {
+    font-family: inherit;
+    border: 1px solid transparent;
+    transition: border-color 0.3s ease;
+    padding: 12px;
+}
+
+.form-control-dark:hover {
+    background-color: #1a1a1a !important;
+    border-color: var(--primary-color) !important;
+}
+
+.form-control-dark:focus {
+    box-shadow: none !important;
+    border-color: var(--primary-color) !important;
+}
+
+.form-control-dark::placeholder {
+    color: #6c757d;
+    opacity: 1;
+}
+
+.form-control-dark:focus::placeholder {
+    color: var(--primary-color);
+    opacity: 0.7;
+}
+
+/* ------------------------------------------
+ * Sección Contacto — Select de Países
+ * ------------------------------------------ */
+#countryCode {
+    /* Forzamos a que respete nuestros estilos sobre los del navegador */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    /* Añadimos un icono de flecha personalizado mediante SVG en el background */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%230dcaf0' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+
+    /* Aseguramos que el texto no se monte sobre la flecha */
+    padding-right: 2.5rem;
+
+    /* Efectos de transición suaves */
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Efecto al pasar el ratón (Hover) */
+#countryCode:hover {
+    background-color: #1a1a1a !important;
+    border-color: var(--primary-color) !important;
+}
+
+/* Efecto al hacer clic (Focus) */
+#countryCode:focus {
+    box-shadow: none !important;
+    border-color: var(--primary-color) !important;
+    background-color: #1a1a1a !important;
+}
+
+/* Estilizamos las opciones desplegadas */
+#countryCode option {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+}
+
+/* ------------------------------------------
+ * Footer index.html — Logos "Built With"
+ * ------------------------------------------ */
+.built-logo {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+/* Estado base */
+.built-logo svg {
+    width: 36px;
+    height: 36px;
+    fill: #6c757d;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Animación de pequeña elevación general */
+.built-logo:hover {
+    transform: translateY(-4px);
+}
+
+.github-logo:hover svg {
+    fill: #ffffff;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+}
+
+.vercel-logo:hover svg {
+    fill: #ffffff;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+}
+
+.supabase-logo:hover svg {
+    fill: #3ECF8E;
+    filter: drop-shadow(0 0 8px rgba(62, 207, 142, 0.6));
+}
+
+/* Molde de Render */
+.render-icon {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background-color: #6c757d;
+    /* Gris neutro por defecto */
+    -webkit-mask: url('https://cdn.jsdelivr.net/npm/simple-icons/icons/render.svg') no-repeat center;
+    mask: url('https://cdn.jsdelivr.net/npm/simple-icons/icons/render.svg') no-repeat center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Efectos Hover para Render */
+.render-logo:hover .render-icon {
+    background-color: #ffffff;
+}
+
+.render-logo:hover {
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+}
+
+/* ------------------------------------------
+ * Responsivo — Botones Hero (Móviles)
+ * ------------------------------------------ */
+@media (max-width: 991.98px) {
+
+    .portfolio-action-btn {
+        font-size: 1.1rem !important;
+        /* Reduce el tamaño de la fuente */
+        padding: 8px 16px !important;
+        /* Reduce el espacio interno */
+        width: auto !important;
+        /* Evita que fuercen el 100% del ancho si lo tenían */
+        white-space: nowrap;
+        /* Obliga a que el texto se mantenga en una sola línea */
+    }
+
+    /* Si los botones están uno al lado del otro, reducimos el margen entre ellos */
+    .portfolio-action-btn+.portfolio-action-btn {
+        margin-left: 1px !important;
+        margin-top: 0 !important;
+    }
+}

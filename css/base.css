@@ -1,0 +1,84 @@
+/* =======================================
+ * Archivo: css/base.css
+ * Descripción: Estilos base y globales
+ * del portafolio. Define las variables CSS,
+ * el reset base, la tipografía y utilidades
+ * compartidas entre todas las páginas.
+ * ======================================= */
+
+/* ------------------------------------------
+ * Fuentes
+ * ------------------------------------------ */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/* ------------------------------------------
+ * Variables CSS (Design Tokens)
+ * ------------------------------------------ */
+:root {
+    --bg-dark: #121212;
+    --bg-black: #080808;
+    --text-main: #f0f0f0;
+    --text-muted: #aaaaaa;
+    --primary-color: #0dcaf0;
+    --secundary-color: #f00dca;
+}
+
+/* ------------------------------------------
+ * Reset y HTML Base
+ * ------------------------------------------ */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ------------------------------------------
+ * Body / Tema Principal
+ * ------------------------------------------ */
+body.tech-theme {
+    font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+    padding-top: 56px;
+    background-color: var(--bg-black);
+    color: var(--text-main);
+    transition: all 0.3s ease;
+}
+
+/* ------------------------------------------
+ * Utilidades Globales de Color
+ * ------------------------------------------ */
+.bg-dark {
+    background-color: var(--bg-dark) !important;
+}
+
+.bg-black {
+    background-color: var(--bg-black) !important;
+}
+
+.text-light-gray {
+    color: var(--text-muted);
+}
+
+/* ------------------------------------------
+ * Botones Globales
+ * ------------------------------------------ */
+.btn-info {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-info:hover {
+    background-color: #0a98b7;
+    transform: scale(1.02);
+    color: #f0f0f0;
+    box-shadow: 0 0 20px rgba(13, 202, 240, 0.5), inset 0 0 15px rgba(13, 202, 240, 0.2);
+    border-color: #fff !important;
+}
+
+.btn-outline-light {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-outline-light:hover {
+    background-color: #000000;
+    transform: scale(1.02);
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(13, 202, 240, 0.5), inset 0 0 15px rgba(13, 202, 240, 0.2);
+    border-color: #fff !important;
+}

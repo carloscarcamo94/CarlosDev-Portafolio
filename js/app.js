@@ -1,23 +1,10 @@
+// ==========================================
+// Archivo: js/app.js
+// Capa de Vista y Animaciones UI
+// ==========================================
+
 document.addEventListener("DOMContentLoaded", function () {
-    
-    // --- Lógica de Smart Navbar (Ocultar al bajar, mostrar al subir) ---
-    // const navbar = document.getElementById('main-navbar');
-    // let lastScrollTop = 0;
 
-    // window.addEventListener('scroll', function() {
-    //     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // Si el usuario hace scroll hacia abajo y ha pasado los primeros 100px
-    //     if (scrollTop > lastScrollTop && scrollTop > 100) {
-    //         navbar.style.transform = 'translateY(-100%)'; // Oculta la barra hacia arriba
-    //     } else {
-    //         navbar.style.transform = 'translateY(0)'; // Muestra la barra al subir
-    //     }
-        
-    //     lastScrollTop = scrollTop;
-    // });
-
-    // --- Mensaje dinámico ---
     const textElement = document.getElementById("typewriter");
     const phrases = ["Desarrollador Backend", "Software Developer"];
     let phraseIndex = 0;
@@ -26,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function typeEffect() {
         const currentPhrase = phrases[phraseIndex];
-        
+
         if (isDeleting) {
             textElement.textContent = currentPhrase.substring(0, letterIndex - 1);
             letterIndex--;
@@ -48,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         setTimeout(typeEffect, typingSpeed);
     }
-    
+
     // Iniciar el efecto de escritura
     typeEffect();
 
@@ -74,11 +61,11 @@ document.addEventListener("DOMContentLoaded", function () {
         // Temporizador para la mitigación visual (Cold Start)
         const coldStartTimeout = setTimeout(() => {
             showAlert("Esto puede tomar unos momentos, por favor no cierres la página.", "alert-info");
-            
+
             // Iniciamos la animación
             let dotCount = 1;
             btnText.textContent = "Enviando."; // Texto inicial
-            
+
             coldStartInterval = setInterval(() => {
                 dotCount++;
                 if (dotCount > 3) {
@@ -86,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
                 btnText.textContent = "Enviando" + ".".repeat(dotCount);
             }, 500); // Velocidad de la animación: cambia cada medio segundo (500ms)
-        }, 3000); 
+        }, 3000);
 
         const data = {
             contactName: document.getElementById("contactName").value,
@@ -103,41 +90,41 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             body: JSON.stringify(data)
         })
-        .then(async response => {
-            if (response.ok) {
-                showAlert("¡Mensaje enviado con éxito! Te contactaré pronto.", "alert-success");
-                contactForm.reset();
-            } else {
-                // Si hay un error, extraemos el JSON que nos manda SpringBoot
-                const errorData = await response.json();
-                // Evaluamos qué tipo de error está devolviendo el backend
-                if (response.status === 429) {
-                    // Límite de peticiones superadas (Utilizamos el alert-warning para este tipo de error)
-                    showAlert(errorData.mensaje || "Has excedido el límite de envíos. Intenta más tarde.", "alert-warning");
-                } else if (response.status === 400) {
-                    // Errores en la validación de datos (Campos vacíos, formato de email incorrecto, etc.)
-                    showAlert("Datos inválidos. Por favor verifica tu información.", "alert-danger");
+            .then(async response => {
+                if (response.ok) {
+                    showAlert("¡Mensaje enviado con éxito! Te contactaré pronto.", "alert-success");
+                    contactForm.reset();
                 } else {
-                    // Cualquier otro error general (HTTP 500)
-                    showAlert("Hubo un error al enviar el mensaje. Revisa los datos.", "alert-danger");
+                    // Si hay un error, extraemos el JSON que nos manda SpringBoot
+                    const errorData = await response.json();
+                    // Evaluamos qué tipo de error está devolviendo el backend
+                    if (response.status === 429) {
+                        // Límite de peticiones superadas (Utilizamos el alert-warning para este tipo de error)
+                        showAlert(errorData.mensaje || "Has excedido el límite de envíos. Intenta más tarde.", "alert-warning");
+                    } else if (response.status === 400) {
+                        // Errores en la validación de datos (Campos vacíos, formato de email incorrecto, etc.)
+                        showAlert("Datos inválidos. Por favor verifica tu información.", "alert-danger");
+                    } else {
+                        // Cualquier otro error general (HTTP 500)
+                        showAlert("Hubo un error al enviar el mensaje. Revisa los datos.", "alert-danger");
+                    }
                 }
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            showAlert("No se pudo conectar con el servidor. Intenta más tarde.", "alert-danger");
-        })
-        .finally(() => {
-            // Cancelamos el temporizador si el servidor respondió rápido
-            clearTimeout(coldStartTimeout);
-            // Cancelamos la animación
-            if (coldStartInterval) clearInterval(coldStartInterval);
-            
-            // Restauramos el botón a su estado original
-            btnText.textContent = "Enviar Mensaje";
-            btnSpinner.classList.add("d-none");
-            submitBtn.disabled = false;
-        });
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                showAlert("No se pudo conectar con el servidor. Intenta más tarde.", "alert-danger");
+            })
+            .finally(() => {
+                // Cancelamos el temporizador si el servidor respondió rápido
+                clearTimeout(coldStartTimeout);
+                // Cancelamos la animación
+                if (coldStartInterval) clearInterval(coldStartInterval);
+
+                // Restauramos el botón a su estado original
+                btnText.textContent = "Enviar Mensaje";
+                btnSpinner.classList.add("d-none");
+                submitBtn.disabled = false;
+            });
     });
 
     function showAlert(message, className) {
