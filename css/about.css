@@ -1,4 +1,4 @@
-﻿/* =======================================
+/* =======================================
  * Archivo: css/about.css
  * Descripción: Estilos de la página
  * Sobre Mí (about.html). Incluye el hero,
@@ -71,14 +71,15 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    /* calc(100% + 5px) previene que el overflow:hidden corte la tilde final */
+    width: calc(100% + 5px);
     /* Empezamos oculto */
     height: 0%;
     color: var(--text-main);
     overflow: hidden;
     /* Laser de escaneo */
-    border-bottom: 2px solid transparent;
-    text-shadow: 0 0 10px var(--secundary-color);
+    border-bottom: 1px solid transparent;
+    text-shadow: 0 0 5px var(--secundary-color);
     animation: scanner-loop 4s ease-in-out infinite;
     z-index: 2;
 }
