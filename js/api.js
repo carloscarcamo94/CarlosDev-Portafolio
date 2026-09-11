@@ -5,6 +5,22 @@
 
 const API_BASE_URL = "https://api-contactform.onrender.com/api";
 
+async function recordVisit() {
+    try {
+        await fetch(`${API_BASE_URL}/visits/record`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                pageUrl: window.location.pathname
+            })
+        });
+    } catch (error) {
+        console.error("Error registrando la visita:", error);
+    }
+}
+
 async function getLibrosData() {
     const response = await fetch(`${API_BASE_URL}/libros/actuales`);
     if (response.status === 204) return null; // No hay contenido

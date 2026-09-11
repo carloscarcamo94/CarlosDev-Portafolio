@@ -4,6 +4,9 @@
 // ==========================================
 
 document.addEventListener("DOMContentLoaded", function () {
+    
+    // Registrar visita en el backend
+    recordVisit();
 
     const textElement = document.getElementById("typewriter");
     const phrases = ["Desarrollador Backend", "Software Developer"];

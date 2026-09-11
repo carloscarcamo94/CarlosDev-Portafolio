@@ -5,6 +5,9 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
+    // Registrar visita en el backend
+    recordVisit();
+
     // ------------------------------------------
     // Lógica de interfaz y animaciones
     // ------------------------------------------
