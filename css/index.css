@@ -383,6 +383,11 @@
     filter: drop-shadow(0 0 8px rgba(62, 207, 142, 0.6));
 }
 
+.spring-logo:hover svg {
+    fill: #6DB33F;
+    filter: drop-shadow(0 0 8px rgba(109, 179, 63, 0.6));
+}
+
 /* Molde de Render */
 .render-icon {
     display: inline-block;

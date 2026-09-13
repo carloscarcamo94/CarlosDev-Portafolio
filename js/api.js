@@ -13,7 +13,8 @@ async function recordVisit() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                pageUrl: window.location.pathname
+                pageUrl: window.location.pathname,
+                referer: document.referrer || "Direct"
             })
         });
     } catch (error) {

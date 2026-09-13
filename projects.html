@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos - &lt;CarlosDev/&gt;</title>
+    <link rel="icon" type="image/svg+xml" href="assets/logos/carlosdev-icon.svg">
+    <link rel="apple-touch-icon" href="assets/logos/carlosdev-icon.svg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TNQYSLH3JJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-TNQYSLH3JJ');
+    </script>
+</head>
+
+<body class="tech-theme" data-bs-spy="scroll" data-bs-target="#main-navbar" tabindex="0">
+
+    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/logos/carlosdev.svg" alt="CarlosDev-Logo" style="height: 40px; width: auto;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Sobre Mí</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page"
+                            href="projects.html">Proyectos</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="redesDropdown" role="button"
+                            data-bs-toggle="dropdown">
+                            Redes Sociales
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow">
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center"
+                                    href="https://github.com/carloscarcamo94" target="_blank">
+                                    <i class="fab fa-github fs-5 me-2" style="color: #ffffff;"></i> GitHub
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center"
+                                    href="https://www.linkedin.com/in/carloscarcamo94/" target="_blank">
+                                    <i class="fab fa-linkedin fs-5 me-2" style="color: #0a66c2;"></i> LinkedIn
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="https://wa.me/50366769841"
+                                    target="_blank">
+                                    <i class="fab fa-whatsapp fs-5 me-2" style="color: #25D366;"></i> WhatsApp
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section text-center d-flex align-items-center mb-5" style="min-height: 40vh; margin-top: 70px;">
+        <div class="container fade-in-up">
+            <h1 class="display-4 fw-bold font-monospace text-magenta mb-3">&lt;Proyectos/&gt;</h1>
+            <p class="lead text-light-gray fs-4">Aplicaciones y plataformas que he construido.</p>
+        </div>
+    </header>
+
+    <!-- Projects Carousel Section -->
+    <section class="py-5" id="proyectos-galeria">
+        <div class="container">
+
+            <div id="projectsCarousel" class="carousel slide projects-carousel" data-bs-ride="carousel"
+                data-bs-interval="8000" data-bs-pause="hover">
+
+                <div class="carousel-inner" id="projects-container">
+                    <!-- Project cards will be injected here via JS -->
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#projectsCarousel"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#projectsCarousel"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
+
+                <div class="carousel-indicators" id="projects-indicators">
+                    <!-- Indicators injected via JS -->
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Image Modal -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content bg-dark border-magenta">
+                <div class="modal-header border-bottom border-secondary">
+                    <h5 class="modal-title font-monospace text-info" id="imageModalLabel">Visor de Imagen</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0 text-center">
+                    <img id="modalImage" src="" alt="Captura a tamaño completo" class="img-fluid w-100">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-5 text-center border-top border-secondary border-opacity-25 bg-dark">
+        <div class="container">
+            <p class="text-light-gray font-monospace mb-4"><i class="fas fa-code text-info me-2"></i>Built with</p>
+
+            <div class="d-flex justify-content-center align-items-center gap-4 flex-wrap">
+                <!-- GitHub -->
+                <a href="https://github.com/carloscarcamo94" target="_blank" class="built-logo github-logo"
+                    aria-label="GitHub">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                    </svg>
+                </a>
+                <!-- Vercel -->
+                <a href="https://vercel.com/" target="_blank" class="built-logo vercel-logo" aria-label="Vercel">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 22.525H0l12-21.05 12 21.05z" />
+                    </svg>
+                </a>
+                <!-- Supabase -->
+                <a href="https://supabase.com/" target="_blank" class="built-logo supabase-logo" aria-label="Supabase">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M21.362 9.354H12V.396a.396.396 0 0 0-.716-.233L2.203 12.424l-.013.016a.394.394 0 0 0 .315.644H12v8.958a.396.396 0 0 0 .716.233l9.081-12.261a.394.394 0 0 0-.315-.644c-.04 0-.081.006-.12.018z" />
+                    </svg>
+                </a>
+                <!-- Spring Boot -->
+                <a href="https://spring.io/projects/spring-boot" target="_blank" class="built-logo spring-logo"
+                    aria-label="Spring Boot">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M21.8537 1.4158a10.4504 10.4504 0 0 1-1.284 2.2471A11.9666 11.9666 0 1 0 3.8518 20.7757l.4445.3951a11.9543 11.9543 0 0 0 19.6316-8.2971c.3457-3.0126-.568-6.8649-2.0743-11.458zM5.5805 20.8745a1.0174 1.0174 0 1 1-.1482-1.4323 1.0396 1.0396 0 0 1 .1482 1.4323zm16.1991-3.5806c-2.9385 3.9263-9.2601 2.5928-13.2852 2.7904 0 0-.7161.0494-1.4323.1481 0 0 .2717-.1234.6174-.2469 2.8398-.9877 4.1732-1.1853 5.9018-2.0743 3.2349-1.6545 6.4698-5.2844 7.1118-9.0379-1.2347 3.6053-4.9881 6.7167-8.3959 7.9761-2.3459.8643-6.5685 1.7039-6.5685 1.7039l-.1729-.0988c-2.8645-1.4076-2.9632-7.6304 2.2718-9.6306 2.2966-.889 4.4696-.395 6.9637-.9877 2.6422-.6174 5.7043-2.5929 6.939-5.1857 1.3828 4.1732 3.062 10.643.0493 14.6434z" />
+                    </svg>
+                </a>
+                <!-- Render -->
+                <a href="https://render.com/" target="_blank" class="built-logo render-logo" aria-label="Render">
+                    <div class="render-icon"></div>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/projects.js"></script>
+</body>
+
+</html>

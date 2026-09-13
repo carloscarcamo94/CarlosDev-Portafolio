@@ -31,3 +31,8 @@
  * 5. Hobbies — Tarjetas dinámicas de hobbies
  * ------------------------------------------ */
 @import url('./hobbies.css');
+
+/* ------------------------------------------
+ * 6. Projects — Estilos de la página de proyectos
+ * ------------------------------------------ */
+@import url('./projects.css');
