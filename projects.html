@@ -38,6 +38,7 @@
                     <li class="nav-item"><a class="nav-link" href="about.html">Sobre Mí</a></li>
                     <li class="nav-item"><a class="nav-link active" aria-current="page"
                             href="projects.html">Proyectos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#proyectos-galeria">Galería</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="redesDropdown" role="button"
                             data-bs-toggle="dropdown">
@@ -69,17 +70,197 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="hero-section text-center d-flex align-items-center mb-5" style="min-height: 40vh; margin-top: 70px;">
-        <div class="container fade-in-up">
-            <h1 class="display-4 fw-bold font-monospace text-magenta mb-3">&lt;Proyectos/&gt;</h1>
-            <p class="lead text-light-gray fs-4">Aplicaciones y plataformas que he construido.</p>
+    <!-- Hero & Architecture Section -->
+    <header class="projects-hero-section text-center position-relative overflow-hidden pb-3">
+        <!-- Holographic Background Deck -->
+        <div class="holo-deck-bg" aria-hidden="true">
+            <div class="holo-grid-floor"></div>
+
+            <!-- Floating Hologram Project Cards in 3D perspective -->
+            <div class="holo-stack-wrapper">
+                <!-- Holo Card 1: Trip Platform Engine -->
+                <div class="holo-card holo-card-1">
+                    <div class="holo-card-inner">
+                        <div class="holo-card-header d-flex justify-content-between">
+                            <span class="holo-tag">MOD::TRIP_ENGINE</span>
+                            <span class="holo-status">v3.5 ONLINE</span>
+                        </div>
+                        <div class="holo-card-body">
+                            <div class="holo-wireframe-browser">
+                                <div class="holo-wireframe-bar"></div>
+                                <div class="holo-wireframe-grid">
+                                    <span></span><span></span><span></span>
+                                </div>
+                            </div>
+                            <div class="holo-code-line">@SpringBootApplication</div>
+                            <div class="holo-code-line">TripService.deployRoute();</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Holo Card 2: Relational Database Model -->
+                <div class="holo-card holo-card-2">
+                    <div class="holo-card-inner">
+                        <div class="holo-card-header d-flex justify-content-between">
+                            <span class="holo-tag">SCHEMA::MYSQL_RELATIONAL</span>
+                            <span class="holo-status">ACID: OK</span>
+                        </div>
+                        <div class="holo-card-body">
+                            <div class="holo-wireframe-table">
+                                <div class="table-row"><span></span><span></span></div>
+                                <div class="table-row"><span></span><span></span></div>
+                                <div class="table-row"><span></span><span></span></div>
+                            </div>
+                            <div class="holo-code-line">SELECT * FROM inventory;</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Holo Card 3: REST API Gateway & Testing -->
+                <div class="holo-card holo-card-3">
+                    <div class="holo-card-inner">
+                        <div class="holo-card-header d-flex justify-content-between">
+                            <span class="holo-tag">GATEWAY::REST_API</span>
+                            <span class="holo-status">200 OK</span>
+                        </div>
+                        <div class="holo-card-body">
+                            <div class="holo-wireframe-endpoints">
+                                <div class="endpoint-item"><span class="badge-method">GET</span> /trips/filter</div>
+                                <div class="endpoint-item"><span class="badge-method">POST</span> /auth/verify</div>
+                            </div>
+                            <div class="holo-code-line">JUnit::assertAll(validations);</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Holo Card 4: Scoring Algorithm Engine -->
+                <div class="holo-card holo-card-4">
+                    <div class="holo-card-inner">
+                        <div class="holo-card-header d-flex justify-content-between">
+                            <span class="holo-tag">ENGINE::QUINIELA_ALGO</span>
+                            <span class="holo-status">ACTIVE</span>
+                        </div>
+                        <div class="holo-card-body">
+                            <div class="holo-wireframe-chart">
+                                <div class="chart-bar" style="height: 60%;"></div>
+                                <div class="chart-bar" style="height: 85%;"></div>
+                                <div class="chart-bar" style="height: 45%;"></div>
+                                <div class="chart-bar" style="height: 70%;"></div>
+                            </div>
+                            <div class="holo-code-line">Leaderboard.rankUsers();</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ambient holographic light beams and vignette -->
+            <div class="holo-light-beam holo-beam-left"></div>
+            <div class="holo-light-beam holo-beam-right"></div>
+            <div class="holo-vignette"></div>
+        </div>
+
+        <div class="container position-relative z-2 pt-4">
+            <h1 class="display-4 fw-bold font-monospace text-magenta mb-2">&lt;Proyectos/&gt;</h1>
+            <p class="lead text-light-gray fs-5 mb-4">Aquí encontrarás una selección de mis proyectos.</p>
+
+            <!-- Engineering Architecture Manifesto / HUD Terminal -->
+            <div class="engineering-manifesto-card mx-auto text-start mb-5" style="max-width: 960px;">
+                <div class="terminal-header d-flex justify-content-between align-items-center">
+                    <div class="terminal-dots d-flex align-items-center gap-2">
+                        <span class="dot dot-red"></span>
+                        <span class="dot dot-yellow"></span>
+                        <span class="dot dot-green"></span>
+                        <span class="terminal-title font-monospace ms-2">carlos@dev-terminal:
+                            ~/architecture-pipeline.sh</span>
+                    </div>
+                    <div class="terminal-badge font-monospace">
+                        <span class="status-indicator"></span> PRODUCTION-READY
+                    </div>
+                </div>
+
+                <div class="terminal-body p-4">
+                    <div class="terminal-prompt mb-3 font-monospace">
+                        <span class="text-info">&gt; execute_architecture_protocol --verbose</span>
+                    </div>
+
+                    <p class="manifesto-text text-light-gray mb-4">
+                        Detrás de cada proyecto hay una metodología de ingeniería aprendida en entornos de alta
+                        exigencia empresarial y formación continua en ciberseguridad. No solo escribo código funcional;
+                        estructuro plataformas con backend desacoplado en <strong>Java y Spring Boot</strong>, garantizo
+                        la persistencia con bases de datos relacionales normalizadas, y blindo cada
+                        servicio mediante pruebas unitarias y validación de endpoints antes de
+                        cualquier despliegue.
+                    </p>
+
+                    <!-- 4 Architecture Pillars Grid -->
+                    <div class="row g-3 pipeline-grid">
+                        <!-- Pillar 1 -->
+                        <div class="col-md-6 col-lg-3">
+                            <div class="pipeline-card h-100">
+                                <div class="pipeline-icon mb-2">
+                                    <i class="fa-solid fa-server text-info fs-4"></i>
+                                </div>
+                                <h3 class="pipeline-title font-monospace text-white fs-6">01 // Backend Limpio</h3>
+                                <div class="pipeline-badge mb-2">Java • Spring Boot</div>
+                                <p class="pipeline-desc mb-0">Arquitectura modular, escalable y APIs RESTful
+                                    aplicando buenas prácticas de desarrollo.</p>
+                            </div>
+                        </div>
+
+                        <!-- Pillar 2 -->
+                        <div class="col-md-6 col-lg-3">
+                            <div class="pipeline-card h-100">
+                                <div class="pipeline-icon mb-2">
+                                    <i class="fa-solid fa-database text-info fs-4"></i>
+                                </div>
+                                <h3 class="pipeline-title font-monospace text-white fs-6">02 // Persistencia Íntegra
+                                </h3>
+                                <div class="pipeline-badge mb-2">MySQL • Relacional</div>
+                                <p class="pipeline-desc mb-0">Modelado, normalización y optimización
+                                    de consultas garantizando integridad ACID.</p>
+                            </div>
+                        </div>
+
+                        <!-- Pillar 3 -->
+                        <div class="col-md-6 col-lg-3">
+                            <div class="pipeline-card h-100">
+                                <div class="pipeline-icon mb-2">
+                                    <i class="fa-solid fa-vial-circle-check text-info fs-4"></i>
+                                </div>
+                                <h3 class="pipeline-title font-monospace text-white fs-6">03 // Testing & QA</h3>
+                                <div class="pipeline-badge mb-2">JUnit • Postman</div>
+                                <p class="pipeline-desc mb-0">Diseño de pruebas unitarias y
+                                    revisión exhaustiva de endpoints para asegurar su correcto funcionamiento..</p>
+                            </div>
+                        </div>
+
+                        <!-- Pillar 4 -->
+                        <div class="col-md-6 col-lg-3">
+                            <div class="pipeline-card h-100">
+                                <div class="pipeline-icon mb-2">
+                                    <i class="fa-solid fa-code-branch text-info fs-4"></i>
+                                </div>
+                                <h3 class="pipeline-title font-monospace text-white fs-6">04 // Ciclo de Vida</h3>
+                                <div class="pipeline-badge mb-2">Git • Flujo Ágil</div>
+                                <p class="pipeline-desc mb-0">Control de versiones, estimaciones técnicas y
+                                    resolución de incidencias en producción.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
     <!-- Projects Carousel Section -->
     <section class="py-5" id="proyectos-galeria">
         <div class="container">
+            <!-- Título centrado de la Galería de Aplicaciones -->
+            <div class="text-center mb-4">
+                <h2 class="font-monospace text-white fw-bold projects-gallery-title">
+                    <i class="fa-solid fa-layer-group text-info me-2"></i>Galería de Aplicaciones
+                </h2>
+            </div>
 
             <div id="projectsCarousel" class="carousel slide projects-carousel" data-bs-ride="carousel"
                 data-bs-interval="8000" data-bs-pause="hover">

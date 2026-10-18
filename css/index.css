@@ -275,7 +275,46 @@
 }
 
 .contact-card:hover {
-    box-shadow: 0 10px 30px rgba(13, 202, 240, 0.1) !important;
+    box-shadow: 0 0 30px rgba(13, 202, 240, 0.18) !important;
+}
+
+/* ------------------------------------------
+ * Sección Contacto — Título "Contáctame" con Barrido de Color
+ * ------------------------------------------ */
+.contact-title {
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    color: #ffffff;
+    background: linear-gradient(90deg,
+            #ffffff 0%,
+            #ffffff 38%,
+            #ff9c5a 45%,
+            var(--secundary-color) 48%,
+            var(--primary-color) 52%,
+            #0075fa 55%,
+            #ffffff 62%,
+            #ffffff 100%);
+    background-size: 600% 100%;
+    background-position: 100% 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent !important;
+}
+
+.contact-card:hover .contact-title {
+    animation: contactTitleSweep 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes contactTitleSweep {
+    0% {
+        background-position: 100% 0;
+    }
+
+    100% {
+        background-position: 0% 0;
+    }
 }
 
 .form-control-dark {

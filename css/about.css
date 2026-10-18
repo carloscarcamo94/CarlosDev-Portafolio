@@ -71,8 +71,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    /* calc(100% + 5px) previene que el overflow:hidden corte la tilde final */
-    width: calc(100% + 5px);
+    /* calc(100% + 2px) previene que el overflow:hidden corte la tilde final */
+    width: calc(100% + 2px);
     /* Empezamos oculto */
     height: 0%;
     color: var(--text-main);

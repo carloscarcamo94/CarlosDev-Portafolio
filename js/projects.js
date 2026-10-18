@@ -17,19 +17,29 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: 'inventory',
             name: 'Control de Inventario',
-            description: 'Sistema integral para el manejo de inventario, entradas, salidas y reportes.',
-            stack: ['Java', 'Spring Boot', 'MySQL'],
+            description: 'Sistema empresarial para la gestión y trazabilidad de inventarios en tiempo real. Permite el control minucioso de stock con alertas de reabastecimiento, registro y auditoría de movimientos de kardex, administración de almacenes múltiples y proveedores, y generación automatizada de reportes con persistencia relacional íntegra.',
+            stack: ['Java 17', 'Spring Boot 3.5', 'JPA/Hibernate', 'MySQL 8.0', 'Spring Security', 'Thymeleaf', 'Bootstrap 5'],
             repoUrl: '#',
             status: 'coming-soon',
+            previewItems: [
+                { icon: 'fa-boxes-stacked', label: 'Gestión de Stock & Kardex', color: 'text-info' },
+                { icon: 'fa-chart-line', label: 'Reportes & Métricas', color: 'text-magenta' },
+                { icon: 'fa-warehouse', label: 'Control Multialmacén', color: 'text-info' }
+            ],
             images: []
         },
         {
             id: 'quiniela',
             name: 'App de Quiniela',
-            description: 'Aplicación para acertar resultados de partidos con sistema de puntuación y ranking de usuarios.',
-            stack: ['Java', 'Spring Boot', 'MySQL'],
+            description: 'Plataforma web de pronósticos deportivos y quinielas comunitarias. Integra un motor algorítmico para el cálculo automático de puntuaciones según resultados en vivo, administración de fixtures de torneos y ligas, tablas de clasificación y ranking en tiempo real, gestión de perfiles de usuario y reglas de desempate.',
+            stack: ['Java 17', 'Spring Boot 3.5', 'JPA/Hibernate', 'MySQL 8.0', 'REST APIs', 'Spring Security', 'Bootstrap 5'],
             repoUrl: '#',
             status: 'coming-soon',
+            previewItems: [
+                { icon: 'fa-futbol', label: 'Pronósticos en Vivo', color: 'text-info' },
+                { icon: 'fa-trophy', label: 'Tabla de Posiciones', color: 'text-magenta' },
+                { icon: 'fa-calculator', label: 'Motor de Puntuación', color: 'text-info' }
+            ],
             images: []
         }
     ];
@@ -57,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         let badgesHtml = project.stack.map(tech => `<span class="badge-stack">${tech}</span>`).join('');
         
-        // Galería de imágenes
+        // Galería de imágenes o wireframes de previsualización
         let galleryHtml = '';
         if (project.images.length > 0) {
             galleryHtml = `
@@ -69,11 +79,28 @@ document.addEventListener('DOMContentLoaded', () => {
                     `).join('')}
                 </div>
             `;
+        } else if (project.previewItems && project.previewItems.length > 0) {
+            galleryHtml = `
+                <div class="project-gallery mt-4">
+                    ${project.previewItems.map(item => `
+                        <div class="gallery-item placeholder-item">
+                            <div class="placeholder-content">
+                                <i class="fa-solid ${item.icon} fs-2 ${item.color} mb-2"></i>
+                                <span>${item.label}</span>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
         }
 
         const comingSoonBadgeHtml = isComingSoon ? `<div class="coming-soon-badge">PRÓXIMAMENTE</div>` : '';
         
-        const repoBtnHtml = isComingSoon ? '' : `
+        const repoBtnHtml = isComingSoon ? `
+            <span class="btn-repo disabled opacity-50" style="cursor: not-allowed; border-color: rgba(255,255,255,0.2); color: #888;">
+                <i class="fa-solid fa-code"></i> En Desarrollo
+            </span>
+        ` : `
             <a href="${project.repoUrl}" target="_blank" class="btn-repo">
                 <i class="fab fa-github"></i> Ver Código
             </a>
@@ -90,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 ${badgesHtml}
                             </div>
                         </div>
-                        <div class="p-4">
+                        <div class="p-4 flex-grow-1">
                             <p class="project-desc">${project.description}</p>
                         </div>
                         ${galleryHtml}
