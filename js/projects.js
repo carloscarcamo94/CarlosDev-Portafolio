@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
             id: 'inventory',
             name: 'Control de Inventario',
             description: 'Sistema empresarial para la gestión y trazabilidad de inventarios en tiempo real. Permite el control minucioso de stock con alertas de reabastecimiento, registro y auditoría de movimientos de kardex, administración de almacenes múltiples y proveedores, y generación automatizada de reportes con persistencia relacional íntegra.',
-            stack: ['Java 17', 'Spring Boot 3.5', 'JPA/Hibernate', 'MySQL 8.0', 'Spring Security', 'Thymeleaf', 'Bootstrap 5'],
+            stack: ['Java 17', 'Spring Boot 3.5', 'JPA/Hibernate', 'MySQL 8.0', 'Thymeleaf', 'Spring Security', 'Bootstrap 5'],
             repoUrl: '#',
             status: 'coming-soon',
             previewItems: [
@@ -43,6 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
             images: []
         }
     ];
+
+    window.projectsData = projects;
 
     const container = document.getElementById('projects-container');
     const indicators = document.getElementById('projects-indicators');
@@ -71,17 +73,17 @@ document.addEventListener('DOMContentLoaded', () => {
         let galleryHtml = '';
         if (project.images.length > 0) {
             galleryHtml = `
-                <div class="project-gallery mt-4">
-                    ${project.images.map(img => `
-                        <div class="gallery-item" onclick="openModal('${img}')">
-                            <img src="${img}" alt="Captura de ${project.name}" onerror="this.src='https://via.placeholder.com/250x150/222/fff?text=Captura+Pendiente'">
+                <div class="project-gallery mt-2 mt-md-4">
+                    ${project.images.map((img, imgIdx) => `
+                        <div class="gallery-item" onclick="openModal('${project.id}', ${imgIdx})">
+                            <img src="${img}" alt="Captura ${imgIdx + 1} de ${project.name}" onerror="this.src='https://via.placeholder.com/250x150/222/fff?text=Captura+Pendiente'">
                         </div>
                     `).join('')}
                 </div>
             `;
         } else if (project.previewItems && project.previewItems.length > 0) {
             galleryHtml = `
-                <div class="project-gallery mt-4">
+                <div class="project-gallery mt-2 mt-md-4">
                     ${project.previewItems.map(item => `
                         <div class="gallery-item placeholder-item">
                             <div class="placeholder-content">
@@ -108,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const slideHtml = `
             <div class="carousel-item ${isActive}">
-                <div class="d-flex justify-content-center px-5 py-4">
+                <div class="d-flex justify-content-center px-2 px-sm-4 px-md-5 py-4">
                     <div class="project-card ${isComingSoon} w-100" style="max-width: 900px;">
                         ${comingSoonBadgeHtml}
                         <div class="project-card-header">
@@ -117,11 +119,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                 ${badgesHtml}
                             </div>
                         </div>
-                        <div class="p-4 flex-grow-1">
+                        <div class="project-card-body">
                             <p class="project-desc">${project.description}</p>
                         </div>
                         ${galleryHtml}
-                        <div class="project-links text-end">
+                        <div class="project-links text-center">
                             ${repoBtnHtml}
                         </div>
                     </div>
@@ -147,20 +149,84 @@ document.addEventListener('DOMContentLoaded', () => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
         el.style.transition = 'all 0.8s ease-out';
-        observer.observe(el);
     });
 });
 
-// Función global para el modal de imágenes
-function openModal(imageSrc) {
-    const modalImage = document.getElementById('modalImage');
-    const imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
-    
-    // Usar placeholder si falla la carga real para que el modal no quede vacío durante el demo
-    modalImage.src = imageSrc;
-    modalImage.onerror = () => {
-        modalImage.src = 'https://via.placeholder.com/1200x800/222/fff?text=Captura+Completa+Pendiente';
+// Función global para el modal de imágenes con carrusel
+function openModal(projectIdOrSrc, selectedIndex = 0) {
+    const modalEl = document.getElementById('imageModal');
+    if (!modalEl) return;
+
+    const carouselInner = document.getElementById('modalCarouselInner');
+    const counterEl = document.getElementById('modalImageCounter');
+    const prevBtn = modalEl.querySelector('.carousel-control-prev');
+    const nextBtn = modalEl.querySelector('.carousel-control-next');
+    const modalCarouselEl = document.getElementById('modalCarousel');
+
+    // Buscar si es un ID de proyecto
+    const project = (window.projectsData && Array.isArray(window.projectsData)) 
+        ? window.projectsData.find(p => p.id === projectIdOrSrc) 
+        : null;
+
+    let imagesList = [];
+    let projectName = 'Proyecto';
+
+    if (project && project.images && project.images.length > 0) {
+        imagesList = project.images;
+        projectName = project.name;
+    } else if (typeof projectIdOrSrc === 'string' && projectIdOrSrc.trim() !== '') {
+        imagesList = [projectIdOrSrc];
+    }
+
+    if (imagesList.length === 0) return;
+
+    const totalImages = imagesList.length;
+    const initialIndex = (selectedIndex >= 0 && selectedIndex < totalImages) ? selectedIndex : 0;
+
+    // Generar slides del carrusel
+    carouselInner.innerHTML = imagesList.map((img, idx) => `
+        <div class="carousel-item ${idx === initialIndex ? 'active' : ''}">
+            <div class="d-flex align-items-center justify-content-center p-2" style="min-height: 380px; background: #080c14;">
+                <img src="${img}" alt="Captura ${idx + 1} de ${projectName}" class="img-fluid" 
+                     onerror="this.src='https://via.placeholder.com/1200x800/181f2a/79c0ff?text=Captura+${idx + 1}+de+${encodeURIComponent(projectName)}'">
+            </div>
+        </div>
+    `).join('');
+
+    // Ajustar visibilidad de flechas y contador
+    if (totalImages <= 1) {
+        if (prevBtn) prevBtn.style.display = 'none';
+        if (nextBtn) nextBtn.style.display = 'none';
+        if (counterEl) counterEl.textContent = '1 / 1';
+    } else {
+        if (prevBtn) prevBtn.style.display = 'flex';
+        if (nextBtn) nextBtn.style.display = 'flex';
+        if (counterEl) counterEl.textContent = `${initialIndex + 1} / ${totalImages}`;
+    }
+
+    // Inicializar carrusel sin autoplay
+    let carouselInstance = bootstrap.Carousel.getInstance(modalCarouselEl);
+    if (carouselInstance) {
+        carouselInstance.dispose();
+    }
+    carouselInstance = new bootstrap.Carousel(modalCarouselEl, {
+        interval: false,
+        wrap: true,
+        keyboard: true
+    });
+    carouselInstance.to(initialIndex);
+
+    // Actualizar contador al cambiar de imagen
+    if (modalCarouselEl._slideHandler) {
+        modalCarouselEl.removeEventListener('slid.bs.carousel', modalCarouselEl._slideHandler);
+    }
+    modalCarouselEl._slideHandler = (e) => {
+        if (counterEl) {
+            counterEl.textContent = `${e.to + 1} / ${totalImages}`;
+        }
     };
-    
+    modalCarouselEl.addEventListener('slid.bs.carousel', modalCarouselEl._slideHandler);
+
+    const imageModal = bootstrap.Modal.getOrCreateInstance(modalEl);
     imageModal.show();
 }
