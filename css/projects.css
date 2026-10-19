@@ -348,6 +348,7 @@
 
 .terminal-dots {
     min-width: 0;
+    line-height: 1;
 }
 
 .terminal-dots .dot {
@@ -374,24 +375,29 @@
 
 .terminal-title {
     font-size: 0.85rem;
+    line-height: 1;
     color: var(--light-gray);
     font-weight: 500;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: inline-flex;
+    align-items: center;
 }
 
 .terminal-badge {
     font-size: 0.72rem;
+    line-height: 1;
     color: #27c93f;
     background: rgba(39, 201, 63, 0.1);
     border: 1px solid rgba(39, 201, 63, 0.3);
-    padding: 2px 10px;
+    padding: 3px 8px;
     border-radius: 12px;
     white-space: nowrap;
     flex-shrink: 0;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 5px;
 }
 
@@ -406,6 +412,7 @@
     display: inline-block;
     box-shadow: 0 0 6px #27c93f;
     animation: blink 1.5s infinite;
+    transform: translateY(-0.5px);
 }
 
 .manifesto-text {
@@ -782,12 +789,10 @@
 
     .terminal-title {
         font-size: 0.78rem;
+        line-height: 1;
     }
 
-    .terminal-badge {
-        font-size: 0.68rem;
-        padding: 2px 7px;
-    }
+
 
     .manifesto-text {
         font-size: 0.95rem;
